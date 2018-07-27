@@ -12,6 +12,7 @@
 namespace Symfony\Component\HttpFoundation\Session\Storage\Handler;
 
 use Predis\Response\ErrorInterface;
+use Symfony\Component\Cache\Traits\RedisProxy;
 
 /**
  * Redis based session storage handler based on the Redis class
@@ -100,6 +101,6 @@ class RedisSessionHandler extends AbstractSessionHandler
      */
     public function updateTimestamp($sessionId, $data)
     {
-        return $this->redis->expire($this->prefix.$sessionId, (int) ini_get('session.gc_maxlifetime'));
+        return (bool) $this->redis->expire($this->prefix.$sessionId, (int) ini_get('session.gc_maxlifetime'));
     }
 }

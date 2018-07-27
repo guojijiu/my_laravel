@@ -476,8 +476,6 @@ class MockObjectTest extends TestCase
 
     /**
      * @dataProvider traversableProvider
-     *
-     * @param mixed $type
      */
     public function testGetMockForTraversable($type): void
     {
@@ -988,6 +986,7 @@ class MockObjectTest extends TestCase
 
     public function testStringableClassDoesNotThrow(): void
     {
+        /** @var PHPUnit\Framework\MockObject\MockObject|StringableClass $mock */
         $mock = $this->getMockBuilder(StringableClass::class)->getMock();
 
         $this->assertInternalType('string', (string) $mock);
@@ -995,6 +994,7 @@ class MockObjectTest extends TestCase
 
     public function testStringableClassCanBeMocked(): void
     {
+        /** @var PHPUnit\Framework\MockObject\MockObject|StringableClass $mock */
         $mock = $this->getMockBuilder(StringableClass::class)->getMock();
 
         $mock->method('__toString')->willReturn('foo');
@@ -1005,12 +1005,12 @@ class MockObjectTest extends TestCase
     public function traversableProvider()
     {
         return [
-          ['Traversable'],
-          ['\Traversable'],
-          ['TraversableMockTestInterface'],
-          [['Traversable']],
-          [['Iterator', 'Traversable']],
-          [['\Iterator', '\Traversable']]
+            ['Traversable'],
+            ['\Traversable'],
+            ['TraversableMockTestInterface'],
+            [['Traversable']],
+            [['Iterator', 'Traversable']],
+            [['\Iterator', '\Traversable']]
         ];
     }
 
@@ -1060,6 +1060,7 @@ class MockObjectTest extends TestCase
 
     public function testDisableAutomaticReturnValueGenerationWithToString(): void
     {
+        /** @var PHPUnit\Framework\MockObject\MockObject|StringableClass $mock */
         $mock = $this->getMockBuilder(StringableClass::class)
             ->disableAutoReturnValueGeneration()
             ->getMock();

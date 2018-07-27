@@ -33,8 +33,7 @@ $router->get('Log/test', 'LogController@test');
 //异常测试
 $router->get('/Exception/test', 'ExceptionController@test');
 
-$router->get('/bridge/test','BridgeController@test');
+$router->get('/bridge/test', 'BridgeController@test');
 
-Route::group(['prefix' => 'admin'], function () {
-    Voyager::routes();
-});
+//ins登录
+$router->get('/ins/login', 'InstagramController@login');

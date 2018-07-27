@@ -532,8 +532,8 @@ final class Configuration
         if (!empty($configuration['include_path'])) {
             \ini_set(
                 'include_path',
-                \implode(PATH_SEPARATOR, $configuration['include_path']) .
-                PATH_SEPARATOR .
+                \implode(\PATH_SEPARATOR, $configuration['include_path']) .
+                \PATH_SEPARATOR .
                 \ini_get('include_path')
             );
         }
@@ -589,6 +589,8 @@ final class Configuration
             if ($force || \getenv($name) === false) {
                 \putenv("{$name}={$value}");
             }
+
+            $value = \getenv($name);
 
             if (!isset($_ENV[$name])) {
                 $_ENV[$name] = $value;
@@ -988,6 +990,7 @@ final class Configuration
 
         $this->document->schemaValidate($xsdFilename);
         $this->errors = \libxml_get_errors();
+        \libxml_clear_errors();
         \libxml_use_internal_errors($original);
     }
 
@@ -1066,7 +1069,7 @@ final class Configuration
                 continue;
             }
 
-            $phpVersion         = PHP_VERSION;
+            $phpVersion         = \PHP_VERSION;
             $phpVersionOperator = '>=';
             $prefix             = '';
             $suffix             = 'Test.php';
@@ -1079,7 +1082,7 @@ final class Configuration
                 $phpVersionOperator = (string) $directoryNode->getAttribute('phpVersionOperator');
             }
 
-            if (!\version_compare(PHP_VERSION, $phpVersion, $phpVersionOperator)) {
+            if (!\version_compare(\PHP_VERSION, $phpVersion, $phpVersionOperator)) {
                 continue;
             }
 
@@ -1122,7 +1125,7 @@ final class Configuration
             }
 
             $file               = $file[0];
-            $phpVersion         = PHP_VERSION;
+            $phpVersion         = \PHP_VERSION;
             $phpVersionOperator = '>=';
 
             if ($fileNode->hasAttribute('phpVersion')) {
@@ -1133,7 +1136,7 @@ final class Configuration
                 $phpVersionOperator = (string) $fileNode->getAttribute('phpVersionOperator');
             }
 
-            if (!\version_compare(PHP_VERSION, $phpVersion, $phpVersionOperator)) {
+            if (!\version_compare(\PHP_VERSION, $phpVersion, $phpVersionOperator)) {
                 continue;
             }
 
@@ -1148,7 +1151,6 @@ final class Configuration
      * Otherwise, returns $default, which may be a string in rare cases.
      * See PHPUnit\Util\ConfigurationTest::testPHPConfigurationIsReadCorrectly
      *
-     * @param string      $value
      * @param bool|string $default
      *
      * @return bool|string
@@ -1257,7 +1259,7 @@ final class Configuration
             return $path;
         }
 
-        $file = \dirname($this->filename) . DIRECTORY_SEPARATOR . $path;
+        $file = \dirname($this->filename) . \DIRECTORY_SEPARATOR . $path;
 
         if ($useIncludePath && !\file_exists($file)) {
             $includePathFile = \stream_resolve_include_path($path);

@@ -15,7 +15,6 @@
         "laravel/tinker": "^1.0",
         "mgp25/instagram-php": "^4.1",
         "swagger-api/swagger-ui": "^3.17",
-        "tcg/voyager": "^1.1",
         "zircote/swagger-php": "^2.0"
     },
     "require-dev": {
