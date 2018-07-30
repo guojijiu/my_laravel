@@ -17,8 +17,7 @@ class InstagramController
         try {
             $ig->login($username, $password);
         } catch (\Exception $e) {
-            echo 'Something went wrong: ' . $e->getMessage() . "\n";
-            exit(0);
+            throw new \LogicException($e->getMessage());
         }
     }
 }
