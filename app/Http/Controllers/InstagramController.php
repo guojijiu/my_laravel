@@ -9,6 +9,8 @@ class InstagramController
 {
     public function login()
     {
+        //允许使用web进行接口调用
+        \InstagramAPI\Instagram::$allowDangerousWebUsageAtMyOwnRisk = true;
         $username = '11';
         $password = '22';
         $ig = new Instagram(true, false);
