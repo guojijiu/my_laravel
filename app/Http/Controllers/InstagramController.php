@@ -14,6 +14,8 @@ class InstagramController
         $username = 'MrXinrain';
         $password = 'a5711947';
         $ig = new Instagram(true, false);
+        return $ig->getProxy();
+        $ig->setProxy('http://10.10.0.208:1087');
         try {
             $ig->login($username, $password);
         } catch (\Exception $e) {
