@@ -3,7 +3,6 @@
 /public/storage
 /storage
 /.idea
-/vendor
 /.vscode
 /.vagrant
 Homestead.json
