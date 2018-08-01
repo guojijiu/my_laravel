@@ -8,9 +8,13 @@ class InstagramController
 {
     public function login()
     {
-        $instagram = Instagram::withCredentials('MrXinrain', 'a5711947');
-        $instagram->login();
-        $account = $instagram->getAccountById(3);
-        echo $account->getUsername();
+        try {
+            $instagram = Instagram::withCredentials('MrXinrain', 'a5711947');
+            $instagram->login();
+            $account = $instagram->getAccountById(3);
+            echo $account->getUsername();
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
     }
 }
