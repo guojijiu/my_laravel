@@ -1,4 +1,7 @@
 <?php
+
+namespace App\Service\Instagram;
+
 require_once __DIR__ . '/InstagramScraper/Instagram.php';
 require_once __DIR__ . '/InstagramScraper/Endpoints.php';
 require_once __DIR__ . '/InstagramScraper/InstagramQueryId.php';
