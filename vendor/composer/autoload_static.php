@@ -11,17 +11,17 @@ class ComposerStaticInitc7c94e5b3d3852a1957251a7077fc6be
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
-        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
+        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
+        'ad155f8f1cf0d418fe49e248db8c661b' => __DIR__ . '/..' . '/react/promise/src/functions_include.php',
         'ddc0a4d7e61c0286f0f8593b1903e894' => __DIR__ . '/..' . '/clue/stream-filter/src/functions.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
-        'ad155f8f1cf0d418fe49e248db8c661b' => __DIR__ . '/..' . '/react/promise/src/functions_include.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
-        '8cff32064859f4559445b89279f3199c' => __DIR__ . '/..' . '/php-http/message/src/filters.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
+        '8cff32064859f4559445b89279f3199c' => __DIR__ . '/..' . '/php-http/message/src/filters.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -37,10 +37,6 @@ class ComposerStaticInitc7c94e5b3d3852a1957251a7077fc6be
         array (
             'Whoops\\' => 7,
             'Webmozart\\Assert\\' => 17,
-        ),
-        'V' => 
-        array (
-            'Vinkla\\Instagram\\' => 17,
         ),
         'T' => 
         array (
@@ -99,7 +95,6 @@ class ComposerStaticInitc7c94e5b3d3852a1957251a7077fc6be
         array (
             'Http\\Promise\\' => 13,
             'Http\\Message\\' => 13,
-            'Http\\Discovery\\' => 15,
             'Http\\Client\\' => 12,
             'Http\\Adapter\\Guzzle6\\' => 21,
         ),
@@ -158,10 +153,6 @@ class ComposerStaticInitc7c94e5b3d3852a1957251a7077fc6be
         'Webmozart\\Assert\\' => 
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
-        ),
-        'Vinkla\\Instagram\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/vinkla/instagram/src',
         ),
         'TijsVerkoyen\\CssToInlineStyles\\' => 
         array (
@@ -287,10 +278,6 @@ class ComposerStaticInitc7c94e5b3d3852a1957251a7077fc6be
         array (
             0 => __DIR__ . '/..' . '/php-http/message/src',
             1 => __DIR__ . '/..' . '/php-http/message-factory/src',
-        ),
-        'Http\\Discovery\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/php-http/discovery/src',
         ),
         'Http\\Client\\' => 
         array (
@@ -1394,23 +1381,6 @@ class ComposerStaticInitc7c94e5b3d3852a1957251a7077fc6be
         'Http\\Client\\HttpClient' => __DIR__ . '/..' . '/php-http/httplug/src/HttpClient.php',
         'Http\\Client\\Promise\\HttpFulfilledPromise' => __DIR__ . '/..' . '/php-http/httplug/src/Promise/HttpFulfilledPromise.php',
         'Http\\Client\\Promise\\HttpRejectedPromise' => __DIR__ . '/..' . '/php-http/httplug/src/Promise/HttpRejectedPromise.php',
-        'Http\\Discovery\\ClassDiscovery' => __DIR__ . '/..' . '/php-http/discovery/src/ClassDiscovery.php',
-        'Http\\Discovery\\Exception' => __DIR__ . '/..' . '/php-http/discovery/src/Exception.php',
-        'Http\\Discovery\\Exception\\ClassInstantiationFailedException' => __DIR__ . '/..' . '/php-http/discovery/src/Exception/ClassInstantiationFailedException.php',
-        'Http\\Discovery\\Exception\\DiscoveryFailedException' => __DIR__ . '/..' . '/php-http/discovery/src/Exception/DiscoveryFailedException.php',
-        'Http\\Discovery\\Exception\\NotFoundException' => __DIR__ . '/..' . '/php-http/discovery/src/Exception/NotFoundException.php',
-        'Http\\Discovery\\Exception\\PuliUnavailableException' => __DIR__ . '/..' . '/php-http/discovery/src/Exception/PuliUnavailableException.php',
-        'Http\\Discovery\\Exception\\StrategyUnavailableException' => __DIR__ . '/..' . '/php-http/discovery/src/Exception/StrategyUnavailableException.php',
-        'Http\\Discovery\\HttpAsyncClientDiscovery' => __DIR__ . '/..' . '/php-http/discovery/src/HttpAsyncClientDiscovery.php',
-        'Http\\Discovery\\HttpClientDiscovery' => __DIR__ . '/..' . '/php-http/discovery/src/HttpClientDiscovery.php',
-        'Http\\Discovery\\MessageFactoryDiscovery' => __DIR__ . '/..' . '/php-http/discovery/src/MessageFactoryDiscovery.php',
-        'Http\\Discovery\\NotFoundException' => __DIR__ . '/..' . '/php-http/discovery/src/NotFoundException.php',
-        'Http\\Discovery\\Strategy\\CommonClassesStrategy' => __DIR__ . '/..' . '/php-http/discovery/src/Strategy/CommonClassesStrategy.php',
-        'Http\\Discovery\\Strategy\\DiscoveryStrategy' => __DIR__ . '/..' . '/php-http/discovery/src/Strategy/DiscoveryStrategy.php',
-        'Http\\Discovery\\Strategy\\MockClientStrategy' => __DIR__ . '/..' . '/php-http/discovery/src/Strategy/MockClientStrategy.php',
-        'Http\\Discovery\\Strategy\\PuliBetaStrategy' => __DIR__ . '/..' . '/php-http/discovery/src/Strategy/PuliBetaStrategy.php',
-        'Http\\Discovery\\StreamFactoryDiscovery' => __DIR__ . '/..' . '/php-http/discovery/src/StreamFactoryDiscovery.php',
-        'Http\\Discovery\\UriFactoryDiscovery' => __DIR__ . '/..' . '/php-http/discovery/src/UriFactoryDiscovery.php',
         'Http\\Message\\Authentication' => __DIR__ . '/..' . '/php-http/message/src/Authentication.php',
         'Http\\Message\\Authentication\\AutoBasicAuth' => __DIR__ . '/..' . '/php-http/message/src/Authentication/AutoBasicAuth.php',
         'Http\\Message\\Authentication\\BasicAuth' => __DIR__ . '/..' . '/php-http/message/src/Authentication/BasicAuth.php',
@@ -4134,8 +4104,6 @@ class ComposerStaticInitc7c94e5b3d3852a1957251a7077fc6be
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Rule' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Rule.php',
         'TranslationsTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TranslationsTableSeeder.php',
         'UsersTableSeeder' => __DIR__ . '/../..' . '/database/seeds/UsersTableSeeder.php',
-        'Vinkla\\Instagram\\Instagram' => __DIR__ . '/..' . '/vinkla/instagram/src/Instagram.php',
-        'Vinkla\\Instagram\\InstagramException' => __DIR__ . '/..' . '/vinkla/instagram/src/InstagramException.php',
         'VoyagerDatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/VoyagerDatabaseSeeder.php',
         'VoyagerDummyDatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/VoyagerDummyDatabaseSeeder.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
