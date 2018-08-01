@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use InstagramScraper\Instagram;
+use App\Service\Instagram\InstagramScraper\Instagram;
 
 class InstagramController
 {
