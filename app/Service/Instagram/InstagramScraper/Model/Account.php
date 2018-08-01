@@ -1,6 +1,6 @@
 <?php
 
-namespace InstagramScraper\Model;
+namespace App\Service\Instagram\InstagramScraper\Model;
 
 /**
  * Class Account

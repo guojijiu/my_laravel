@@ -1,6 +1,6 @@
 <?php
 
-namespace InstagramScraper\Model;
+namespace App\Service\Instagram\InstagramScraper\Model;
 
 
 class Like extends AbstractModel

@@ -1,6 +1,6 @@
 <?php
 
-namespace InstagramScraper;
+namespace App\Service\Instagram\InstagramScraper;
 
 class Endpoints
 {

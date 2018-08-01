@@ -1,18 +1,18 @@
 <?php
 
-namespace InstagramScraper;
+namespace App\Service\Instagram\InstagramScraper;
 
-use InstagramScraper\Exception\InstagramAuthException;
-use InstagramScraper\Exception\InstagramException;
-use InstagramScraper\Exception\InstagramNotFoundException;
-use InstagramScraper\Model\Account;
-use InstagramScraper\Model\Comment;
-use InstagramScraper\Model\Like;
-use InstagramScraper\Model\Location;
-use InstagramScraper\Model\Media;
-use InstagramScraper\Model\Story;
-use InstagramScraper\Model\Tag;
-use InstagramScraper\Model\UserStories;
+use App\Service\Instagram\InstagramScraper\Exception\InstagramAuthException;
+use App\Service\Instagram\InstagramScraper\Exception\InstagramException;
+use App\Service\Instagram\InstagramScraper\Exception\InstagramNotFoundException;
+use App\Service\Instagram\InstagramScraper\Model\Account;
+use App\Service\Instagram\InstagramScraper\Model\Comment;
+use App\Service\Instagram\InstagramScraper\Model\Like;
+use App\Service\Instagram\InstagramScraper\Model\Location;
+use App\Service\Instagram\InstagramScraper\Model\Media;
+use App\Service\Instagram\InstagramScraper\Model\Story;
+use App\Service\Instagram\InstagramScraper\Model\Tag;
+use App\Service\Instagram\InstagramScraper\Model\UserStories;
 use InvalidArgumentException;
 use phpFastCache\Cache\ExtendedCacheItemPoolInterface;
 use phpFastCache\CacheManager;
@@ -336,7 +336,7 @@ class Instagram
      */
     private function generateGisToken($variables)
     {
-        return md5(implode(':', [$this->getRhxGis(), $variables ]));
+        return md5(implode(':', [$this->getRhxGis(), $variables]));
     }
 
     /**
@@ -354,9 +354,9 @@ class Instagram
         $isMoreAvailable = true;
         while ($index < $count && $isMoreAvailable) {
             $variables = json_encode([
-                'id' => (string) $id,
-                'first' => (string) $count,
-                'after' => (string) $maxId
+                'id' => (string)$id,
+                'first' => (string)$count,
+                'after' => (string)$maxId
             ]);
 
             $response = Request::get(Endpoints::getAccountMediasJsonLink($variables), $this->generateHeaders($this->userSession, $this->generateGisToken($variables)));
@@ -513,9 +513,9 @@ class Instagram
         ];
 
         $variables = json_encode([
-            'id' => (string) $account->getId(),
-            'first' => (string) Endpoints::getAccountMediasRequestCount(),
-            'after' => (string) $maxId
+            'id' => (string)$account->getId(),
+            'first' => (string)Endpoints::getAccountMediasRequestCount(),
+            'after' => (string)$maxId
         ]);
 
         $response = Request::get(
@@ -1217,7 +1217,7 @@ class Instagram
                 throw new InstagramException('Response code is ' . $response->code . '. Body: ' . static::getErrorBody($response->body) . ' Something went wrong. Please report issue.', $response->code);
             }
             preg_match('/"csrf_token":"(.*?)"/', $response->body, $match);
-            if(isset($match[1])) {
+            if (isset($match[1])) {
                 $csrfToken = $match[1];
             }
             $cookies = static::parseCookies($response->headers['Set-Cookie']);
