@@ -13,8 +13,8 @@ class InstagramController
             $instagram->login();
 //            $account = $instagram->getAccountById(3);
 //            echo $account->getUsername();
-            $nonPrivateAccountMedias = $instagram->getMedias('kevin');
-            echo $nonPrivateAccountMedias[0]->getLink();
+            $nonPrivateAccountMedias = $instagram->getMedias('kyo1122');
+             print_r($nonPrivateAccountMedias);
 
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
