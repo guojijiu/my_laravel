@@ -19,9 +19,11 @@ class InstagramController
             }
             $result = [];
             foreach ($nonPrivateAccountMedias as $key => $item) {
-                $result[$key] = collect($item)->toArray();
+                $itemArr = collect($item)->toArray();
+                $result[$key]['img'] = $itemArr['imageHighResolutionUrl'];
+                $result[$key]['created_time'] = $itemArr['created_time'];
             }
-
+            return $result;
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
