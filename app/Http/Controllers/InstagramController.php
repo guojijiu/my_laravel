@@ -14,7 +14,13 @@ class InstagramController
 //            $account = $instagram->getAccountById(3);
 //            echo $account->getUsername();
             $nonPrivateAccountMedias = $instagram->getMedias('ara_go_0211');
-            return collect($nonPrivateAccountMedias)->toArray();
+            if (empty($nonPrivateAccountMedias)) {
+                return true;
+            }
+            $result = [];
+            foreach ($nonPrivateAccountMedias as $key => $item) {
+                $result[$key] = collect($item)->toArray();
+            }
 
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
