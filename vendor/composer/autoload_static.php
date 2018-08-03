@@ -22,6 +22,7 @@ class ComposerStaticInitc7c94e5b3d3852a1957251a7077fc6be
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         '8cff32064859f4559445b89279f3199c' => __DIR__ . '/..' . '/php-http/message/src/filters.php',
+        '841780ea2e1d6545ea3a253239d59c05' => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu/functions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -66,6 +67,10 @@ class ComposerStaticInitc7c94e5b3d3852a1957251a7077fc6be
         array (
             'React\\Promise\\' => 14,
             'Ramsey\\Uuid\\' => 12,
+        ),
+        'Q' => 
+        array (
+            'Qiniu\\' => 6,
         ),
         'P' => 
         array (
@@ -237,6 +242,10 @@ class ComposerStaticInitc7c94e5b3d3852a1957251a7077fc6be
         'Ramsey\\Uuid\\' => 
         array (
             0 => __DIR__ . '/..' . '/ramsey/uuid/src',
+        ),
+        'Qiniu\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu',
         ),
         'Psy\\' => 
         array (
@@ -458,6 +467,24 @@ class ComposerStaticInitc7c94e5b3d3852a1957251a7077fc6be
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
+        'App\\Service\\Instagram\\InstagramScraper\\Endpoints' => __DIR__ . '/../..' . '/app/Service/Instagram/InstagramScraper/Endpoints.php',
+        'App\\Service\\Instagram\\InstagramScraper\\Exception\\InstagramAuthException' => __DIR__ . '/../..' . '/app/Service/Instagram/InstagramScraper/Exception/InstagramAuthException.php',
+        'App\\Service\\Instagram\\InstagramScraper\\Exception\\InstagramException' => __DIR__ . '/../..' . '/app/Service/Instagram/InstagramScraper/Exception/InstagramException.php',
+        'App\\Service\\Instagram\\InstagramScraper\\Exception\\InstagramNotFoundException' => __DIR__ . '/../..' . '/app/Service/Instagram/InstagramScraper/Exception/InstagramNotFoundException.php',
+        'App\\Service\\Instagram\\InstagramScraper\\Instagram' => __DIR__ . '/../..' . '/app/Service/Instagram/InstagramScraper/Instagram.php',
+        'App\\Service\\Instagram\\InstagramScraper\\InstagramQueryId' => __DIR__ . '/../..' . '/app/Service/Instagram/InstagramScraper/InstagramQueryId.php',
+        'App\\Service\\Instagram\\InstagramScraper\\Model\\AbstractModel' => __DIR__ . '/../..' . '/app/Service/Instagram/InstagramScraper/Model/AbstractModel.php',
+        'App\\Service\\Instagram\\InstagramScraper\\Model\\Account' => __DIR__ . '/../..' . '/app/Service/Instagram/InstagramScraper/Model/Account.php',
+        'App\\Service\\Instagram\\InstagramScraper\\Model\\CarouselMedia' => __DIR__ . '/../..' . '/app/Service/Instagram/InstagramScraper/Model/CarouselMedia.php',
+        'App\\Service\\Instagram\\InstagramScraper\\Model\\Comment' => __DIR__ . '/../..' . '/app/Service/Instagram/InstagramScraper/Model/Comment.php',
+        'App\\Service\\Instagram\\InstagramScraper\\Model\\Like' => __DIR__ . '/../..' . '/app/Service/Instagram/InstagramScraper/Model/Like.php',
+        'App\\Service\\Instagram\\InstagramScraper\\Model\\Location' => __DIR__ . '/../..' . '/app/Service/Instagram/InstagramScraper/Model/Location.php',
+        'App\\Service\\Instagram\\InstagramScraper\\Model\\Media' => __DIR__ . '/../..' . '/app/Service/Instagram/InstagramScraper/Model/Media.php',
+        'App\\Service\\Instagram\\InstagramScraper\\Model\\Story' => __DIR__ . '/../..' . '/app/Service/Instagram/InstagramScraper/Model/Story.php',
+        'App\\Service\\Instagram\\InstagramScraper\\Model\\Tag' => __DIR__ . '/../..' . '/app/Service/Instagram/InstagramScraper/Model/Tag.php',
+        'App\\Service\\Instagram\\InstagramScraper\\Model\\UserStories' => __DIR__ . '/../..' . '/app/Service/Instagram/InstagramScraper/Model/UserStories.php',
+        'App\\Service\\Instagram\\InstagramScraper\\Traits\\ArrayLikeTrait' => __DIR__ . '/../..' . '/app/Service/Instagram/InstagramScraper/Traits/ArrayLikeTrait.php',
+        'App\\Service\\Instagram\\InstagramScraper\\Traits\\InitializerTrait' => __DIR__ . '/../..' . '/app/Service/Instagram/InstagramScraper/Traits/InitializerTrait.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',
         'Carbon\\CarbonInterval' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
@@ -3656,6 +3683,23 @@ class ComposerStaticInitc7c94e5b3d3852a1957251a7077fc6be
         'Psy\\VersionUpdater\\GitHubChecker' => __DIR__ . '/..' . '/psy/psysh/src/VersionUpdater/GitHubChecker.php',
         'Psy\\VersionUpdater\\IntervalChecker' => __DIR__ . '/..' . '/psy/psysh/src/VersionUpdater/IntervalChecker.php',
         'Psy\\VersionUpdater\\NoopChecker' => __DIR__ . '/..' . '/psy/psysh/src/VersionUpdater/NoopChecker.php',
+        'Qiniu\\Auth' => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu/Auth.php',
+        'Qiniu\\Cdn\\CdnManager' => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu/Cdn/CdnManager.php',
+        'Qiniu\\Config' => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu/Config.php',
+        'Qiniu\\Etag' => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu/Etag.php',
+        'Qiniu\\Http\\Client' => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu/Http/Client.php',
+        'Qiniu\\Http\\Error' => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu/Http/Error.php',
+        'Qiniu\\Http\\Request' => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu/Http/Request.php',
+        'Qiniu\\Http\\Response' => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu/Http/Response.php',
+        'Qiniu\\Processing\\ImageUrlBuilder' => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu/Processing/ImageUrlBuilder.php',
+        'Qiniu\\Processing\\Operation' => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu/Processing/Operation.php',
+        'Qiniu\\Processing\\PersistentFop' => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu/Processing/PersistentFop.php',
+        'Qiniu\\Rtc\\AppClient' => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu/Rtc/AppClient.php',
+        'Qiniu\\Storage\\BucketManager' => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu/Storage/BucketManager.php',
+        'Qiniu\\Storage\\FormUploader' => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu/Storage/FormUploader.php',
+        'Qiniu\\Storage\\ResumeUploader' => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu/Storage/ResumeUploader.php',
+        'Qiniu\\Storage\\UploadManager' => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu/Storage/UploadManager.php',
+        'Qiniu\\Zone' => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu/Zone.php',
         'Ramsey\\Uuid\\BinaryUtils' => __DIR__ . '/..' . '/ramsey/uuid/src/BinaryUtils.php',
         'Ramsey\\Uuid\\Builder\\DefaultUuidBuilder' => __DIR__ . '/..' . '/ramsey/uuid/src/Builder/DefaultUuidBuilder.php',
         'Ramsey\\Uuid\\Builder\\DegradedUuidBuilder' => __DIR__ . '/..' . '/ramsey/uuid/src/Builder/DegradedUuidBuilder.php',

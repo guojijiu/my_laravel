@@ -9,15 +9,14 @@ class InstagramController
     public function login()
     {
         try {
-            $instagram = Instagram::withCredentials('MrXinrain', 'a5711947');
-            $instagram->login();
-//            $account = $instagram->getAccountById(3);
-//            echo $account->getUsername();
+//            $instagram = Instagram::withCredentials('MrXinrain', 'a5711947');
+//            $instagram->login();
+
+            $instagram = new Instagram();
             $nonPrivateAccountMedias = $instagram->getMedias('ara_go_0211');
             if (empty($nonPrivateAccountMedias)) {
                 return true;
             }
-            print_r($nonPrivateAccountMedias);exit();
             $result = [];
             foreach ($nonPrivateAccountMedias as $key => $item) {
                 $account = $item->getOwner();

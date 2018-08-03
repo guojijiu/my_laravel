@@ -13,11 +13,12 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.6.*",
         "laravel/tinker": "^1.0",
+        "mashape/unirest-php": "3.0.*",
         "monolog/monolog": "^1.23",
         "php-http/guzzle6-adapter": "^1.1",
         "php-http/message": "^1.6",
-        "mashape/unirest-php": "3.0.*",
-        "phpFastCache/phpFastCache": "5.0.*"
+        "phpFastCache/phpFastCache": "5.0.*",
+        "qiniu/php-sdk": "^7.2"
     },
     "require-dev": {
         "filp/whoops": "^2.0",
