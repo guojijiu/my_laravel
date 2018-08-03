@@ -37,3 +37,10 @@ $router->get('/bridge/test', 'BridgeController@test');
 
 //ins登录
 $router->get('/ins/login', 'InstagramController@login');
+
+//获取图片token
+$router->get('/img/getToken', 'ImageController@getQiNiuToken');
+//图片上传
+$router->get('/img/upload', 'ImageController@uploadImage');
+//图片下载
+$router->get('/img/download', 'ImageController@download');
