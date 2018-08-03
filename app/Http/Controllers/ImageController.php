@@ -33,7 +33,7 @@ class ImageController
 
         $token = $qiNiuParser->getToken();
 
-        return $$token;
+        return $token;
     }
 
     /**
