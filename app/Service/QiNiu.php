@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Basic;
+namespace App\Services;
 
 use Qiniu\Auth;
 use Qiniu\Storage\UploadManager;

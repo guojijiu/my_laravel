@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\Basic\QiNiu;
+use App\Services\QiNiu;
 use Illuminate\Http\Request;
 
 /**
