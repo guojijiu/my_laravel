@@ -14,10 +14,6 @@ class InstagramController
 
             $instagram = new Instagram();
 
-            //获取用户信息
-            $accountData = $instagram->getAccountById('1701187018');
-            print_r($accountData);exit();
-
             //分页查询
 //            $result = $instagram->getPaginateMedias('kyo1122');
 //            $medias = $result['medias'];
@@ -31,12 +27,16 @@ class InstagramController
                 return true;
             }
             $result = [];
+
+            $account = $instagram->getUserAgent();
+            print_r($account);exit();
+            $result[$key]['user_id'] = $account->getId();
+            $result[$key]['user_name'] = $account->getUsername();
+            $result[$key]['full_name'] = $account->getFullName();
+            $result[$key]['pro_file_pic'] = $account->getProfilePicUrl();
+
+
             foreach ($nonPrivateAccountMedias as $key => $item) {
-                $account = $item->getOwner();
-                $result[$key]['user_id'] = $account->getId();
-                $result[$key]['user_name'] = $account->getUsername();
-                $result[$key]['full_name'] = $account->getFullName();
-                $result[$key]['pro_file_pic'] = $account->getProfilePicUrl();
 
                 $result[$key]['type'] = $item->getType();
                 $result[$key]['img_src'] = $item->getImageHighResolutionUrl();
