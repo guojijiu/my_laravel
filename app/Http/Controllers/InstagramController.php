@@ -24,7 +24,6 @@ class InstagramController
 //            return $medias;
             $nonPrivateAccountMedias = $instagram->getMedias('kyo1122');
             $account = $instagram->getAccount('kyo1122');
-            $store = $instagram->getStories();
 
             if (empty($nonPrivateAccountMedias)) {
                 return true;
@@ -53,8 +52,6 @@ class InstagramController
                         $result[$key]['sidecar_media'][] = $sidecarMedia->getImageHighResolutionUrl();
                     }
                 }
-
-                $result[$key]['store'] = $store;
 
             }
 
