@@ -26,7 +26,9 @@ class InstagramController
                 $result[$key]['caption'] = $item->getCaption();
                 $result[$key]['created_time'] = $item->getCreatedTime();
 
-                foreach ($item->getSidecarMedias() as $sidecarMedia) {
+                $media = $instagram->getMediaByUrl($item->getLink());
+
+                foreach ($media->getSidecarMedias() as $sidecarMedia) {
                     $result[$key]['sidecar_media'][] = $sidecarMedia->getImageHighResolutionUrl();
                 }
             }
