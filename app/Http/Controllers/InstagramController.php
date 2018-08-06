@@ -75,7 +75,7 @@ class InstagramController
 
             StarDynamic::query()->insert($saveData);
 
-            return true;
+            return 'save ok!';
 
         } catch (\Exception $e) {
             throw new \InvalidArgumentException($e->getMessage());
