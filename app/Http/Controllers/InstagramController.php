@@ -17,12 +17,11 @@ class InstagramController
             if (empty($nonPrivateAccountMedias)) {
                 return true;
             }
+            print_r($nonPrivateAccountMedias);exit();
             $result = [];
             foreach ($nonPrivateAccountMedias as $key => $item) {
                 $account = $item->getOwner();
                 $result[$key]['user_id'] = $account->getId();
-                $result[$key]['user_name'] = $account->getUsername();
-                $result[$key]['profile_pic'] = $account->getProfilePicUrl();
                 $result[$key]['img'] = $item->getImageHighResolutionUrl();
                 $result[$key]['created_time'] = $item->getCreatedTime();
             }
