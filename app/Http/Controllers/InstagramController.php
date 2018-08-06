@@ -9,10 +9,10 @@ class InstagramController
     public function login()
     {
         try {
-//            $instagram = Instagram::withCredentials('MrXinrain', 'a5711947');
-//            $instagram->login();
+            $instagram = Instagram::withCredentials('MrXinrain', 'a5711947');
+            $instagram->login();
 
-            $instagram = new Instagram();
+//            $instagram = new Instagram();
 //            $result = $instagram->getPaginateMedias('kyo1122');
 //            $medias = $result['medias'];
 //            if ($result['hasNextPage'] === true) {
@@ -30,7 +30,7 @@ class InstagramController
                 $result[$key]['user_id'] = $account->getId();
                 $result[$key]['user_name'] = $account->getUsername();
                 $result[$key]['full_name'] = $account->getFullName();
-                $result[$key]['full_name'] = $account->getProfilePicUrl();
+                $result[$key]['pro_file_pic'] = $account->getProfilePicUrl();
 
                 $result[$key]['type'] = $item->getType();
                 $result[$key]['img_src'] = $item->getImageHighResolutionUrl();
