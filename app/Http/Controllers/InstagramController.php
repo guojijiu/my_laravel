@@ -28,8 +28,8 @@ class InstagramController
             }
             $result = [];
 
-            $account = (array)$instagram->getUserAgent();
-return $account;
+            $account = $instagram->getUserAgent();
+print_r($account);exit();
 
             foreach ($nonPrivateAccountMedias as $key => $item) {
 
