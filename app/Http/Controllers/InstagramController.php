@@ -14,49 +14,65 @@ class InstagramController
 
             $instagram = new Instagram();
 
-            //分页查询
-//            $result = $instagram->getPaginateMedias('kyo1122');
-//            $medias = $result['medias'];
-//            if ($result['hasNextPage'] === true) {
-//                $result = $instagram->getPaginateMedias('kyo1122', $result['maxId']);
-//                $medias = array_merge($medias, $result['medias']);
-//            }
-//            return $medias;
-            $nonPrivateAccountMedias = $instagram->getMedias('kyo1122','100');
+            $account = $instagram->getAccount('kyo1122');
+            $imgData = StarDynamic::query()
+                ->where('user_id', $account->getId())
+                ->get(['id', 'resource_id'])
+                ->keyBy('resource_id')
+                ->toArray();
 
-//            $account = $instagram->getAccount('kyo1122');
+            $userCount = count($imgData);
+
+            $number = $userCount >= 100 ? 10 : 100;
+
+            $nonPrivateAccountMedias = $instagram->getMedias('kyo1122', $number);
 
             if (empty($nonPrivateAccountMedias)) {
                 return true;
             }
-            $result = [];
 
-            foreach ($nonPrivateAccountMedias as $key => $item) {
+            $resourceData = [];
+
+            foreach ($nonPrivateAccountMedias as $item) {
 
                 //用户信息
-//                $result[$key]['user_id'] = $account->getId();
-//                $result[$key]['user_name'] = $account->getUsername();
-//                $result[$key]['full_name'] = $account->getFullName();
-//                $result[$key]['pro_file_pic'] = $account->getProfilePicUrl();
+//                $resourceData[$key]['user_id'] = $account->getId();
+//                $resourceData[$key]['user_name'] = $account->getUsername();
+//                $resourceData[$key]['full_name'] = $account->getFullName();
+//                $resourceData[$key]['pro_file_pic'] = $account->getProfilePicUrl();
 
                 //图片相关
-                $result[$key]['type'] = $item->getType();
-                $result[$key]['img_src'] = $item->getImageHighResolutionUrl();
-                $result[$key]['caption'] = $item->getCaption();
-                $result[$key]['created_time'] = $item->getCreatedTime();
+                $resourceId = $item->getId();
+
+                $resourceData[$resourceId]['resource_id'] = $resourceId;
+                $resourceData[$resourceId]['resource_from'] = 'instagram';
+                $resourceData[$resourceId]['resource_type'] = $item->getType();
+                $resourceData[$resourceId]['img_urls'] = json_encode($item->getImageHighResolutionUrl());
+                $resourceData[$resourceId]['caption'] = $item->getCaption();
+                $resourceData[$resourceId]['created_at'] = $item->getCreatedTime();
 
                 //组图相关
                 if ($item->getType() == 'sidecar') {
                     $media = $instagram->getMediaByUrl($item->getLink());
+                    $imageUrls = [];
 
                     foreach ($media->getSidecarMedias() as $sidecarMedia) {
-                        $result[$key]['sidecar_media'][] = $sidecarMedia->getImageHighResolutionUrl();
+                        $imageUrls[] = $sidecarMedia->getImageHighResolutionUrl();
                     }
+
+                    $resourceData[$resourceId]['img_urls'] = json_encode($imageUrls);
                 }
 
             }
 
-            return $result;
+            $saveData = array_diff_key($imgData, $resourceData);
+
+            if (empty($saveData)) {
+                return true;
+            }
+
+            return $saveData;
+
         } catch (\Exception $e) {
             throw new \InvalidArgumentException($e->getMessage());
         }
