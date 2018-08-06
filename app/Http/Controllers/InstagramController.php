@@ -99,7 +99,13 @@ class InstagramController
         //todo 定期删除目录下的图片文件
 
         $img = file_get_contents($imgUrl);
-        $down = file_put_contents(__DIR__ . 'backstage/star/', md5($img . time() . rand(1, 99)));
+        $newFile = '/usr/local/img/';
+        if (!file_exists($newFile)) {
+            mkdir($newFile, 0777);
+        }
+        //TODO 匹配图片格式
+        $newFileName = date('YmdHis') . 'jpg';
+        $down = file_put_contents($newFileName, $img);
 
         return $down;
 
