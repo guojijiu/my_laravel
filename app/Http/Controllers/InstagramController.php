@@ -23,7 +23,7 @@ class InstagramController
 
             $userCount = count($imgData);
 
-            $number = $userCount >= 100 ? 10 : 100;
+            $number = $userCount <= 100 ? 10 : 105;
 
             $nonPrivateAccountMedias = $instagram->getMedias('kyo1122', $number);
 
