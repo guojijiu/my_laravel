@@ -28,15 +28,15 @@ class InstagramController
             }
             $result = [];
 
-            $account = $instagram->getUserAgent();
-            print_r($account);exit();
-            $result[$key]['user_id'] = $account->getId();
-            $result[$key]['user_name'] = $account->getUsername();
-            $result[$key]['full_name'] = $account->getFullName();
-            $result[$key]['pro_file_pic'] = $account->getProfilePicUrl();
-
+            $account = collect($instagram->getUserAgent())->toArray();
+return $account;
 
             foreach ($nonPrivateAccountMedias as $key => $item) {
+
+                $result[$key]['user_id'] = $account->getId();
+                $result[$key]['user_name'] = $account->getUsername();
+                $result[$key]['full_name'] = $account->getFullName();
+                $result[$key]['pro_file_pic'] = $account->getProfilePicUrl();
 
                 $result[$key]['type'] = $item->getType();
                 $result[$key]['img_src'] = $item->getImageHighResolutionUrl();
