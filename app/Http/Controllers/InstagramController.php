@@ -13,6 +13,13 @@ class InstagramController
 //            $instagram->login();
 
             $instagram = new Instagram();
+            $result = $instagram->getPaginateMedias('kyo1122');
+            $medias = $result['medias'];
+            if ($result['hasNextPage'] === true) {
+                $result = $instagram->getPaginateMedias('kyo1122', $result['maxId']);
+                $medias = array_merge($medias, $result['medias']);
+            }
+            return $medias;
             $nonPrivateAccountMedias = $instagram->getMedias('kyo1122', 20);
             if (empty($nonPrivateAccountMedias)) {
                 return true;
@@ -26,11 +33,14 @@ class InstagramController
                 $result[$key]['caption'] = $item->getCaption();
                 $result[$key]['created_time'] = $item->getCreatedTime();
 
-                $media = $instagram->getMediaByUrl($item->getLink());
+                if ($item->getType() == 'sidecar') {
+                    $media = $instagram->getMediaByUrl($item->getLink());
 
-                foreach ($media->getSidecarMedias() as $sidecarMedia) {
-                    $result[$key]['sidecar_media'][] = $sidecarMedia->getImageHighResolutionUrl();
+                    foreach ($media->getSidecarMedias() as $sidecarMedia) {
+                        $result[$key]['sidecar_media'][] = $sidecarMedia->getImageHighResolutionUrl();
+                    }
                 }
+
             }
             return $result;
         } catch (\Exception $e) {
