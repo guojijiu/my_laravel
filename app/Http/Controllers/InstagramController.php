@@ -70,10 +70,10 @@ class InstagramController
             $saveData = array_diff_key($resourceData, $imgData);
 
             if (empty($saveData)) {
-                echo 'sss';
+                echo 'no data';
             }
 
-            return $saveData;
+            StarDynamic::query()->insert($saveData);
 
         } catch (\Exception $e) {
             throw new \InvalidArgumentException($e->getMessage());
