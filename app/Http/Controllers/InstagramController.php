@@ -28,16 +28,9 @@ class InstagramController
             }
             $result = [];
 
-            $account = $instagram->getUserAgent();
-print_r($account);exit();
-
             foreach ($nonPrivateAccountMedias as $key => $item) {
 
-                $result[$key]['user_id'] = $account->getId();
-                $result[$key]['user_name'] = $account->getUsername();
-                $result[$key]['full_name'] = $account->getFullName();
-                $result[$key]['pro_file_pic'] = $account->getProfilePicUrl();
-
+                $userId = $item->getOwnerId();
                 $result[$key]['type'] = $item->getType();
                 $result[$key]['img_src'] = $item->getImageHighResolutionUrl();
                 $result[$key]['caption'] = $item->getCaption();
@@ -52,6 +45,18 @@ print_r($account);exit();
                 }
 
             }
+
+            $account = $instagram->getUsernameById($userId);
+            print_r($account);exit();
+            foreach ($account as $userInfo) {
+
+                $result[$key]['user_id'] = $userInfo->getId();
+                $result[$key]['user_name'] = $userInfo->getUsername();
+                $result[$key]['full_name'] = $userInfo->getFullName();
+                $result[$key]['pro_file_pic'] = $userInfo->getProfilePicUrl();
+
+            }
+
             return $result;
         } catch (\Exception $e) {
             throw new \InvalidArgumentException($e->getMessage());
