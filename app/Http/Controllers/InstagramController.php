@@ -9,10 +9,16 @@ class InstagramController
     public function login()
     {
         try {
-            $instagram = Instagram::withCredentials('MrXinrain', 'a5711947');
-            $instagram->login();
+//            $instagram = Instagram::withCredentials('MrXinrain', 'a5711947');
+//            $instagram->login();
 
-//            $instagram = new Instagram();
+            $instagram = new Instagram();
+
+            //获取用户信息
+            $accountData = $instagram->getAccountById('1701187018');
+            print_r($accountData);exit();
+
+            //分页查询
 //            $result = $instagram->getPaginateMedias('kyo1122');
 //            $medias = $result['medias'];
 //            if ($result['hasNextPage'] === true) {
