@@ -16,7 +16,7 @@ class InstagramController
 
             $account = $instagram->getAccount('kyo1122');
             $imgData = StarDynamic::query()
-                ->where('user_id', $account->getId())
+                ->where('resource_user_id', $account->getId())
                 ->get(['id', 'resource_id'])
                 ->keyBy('resource_id')
                 ->toArray();
@@ -35,14 +35,16 @@ class InstagramController
 
             foreach ($nonPrivateAccountMedias as $item) {
 
+                $resourceId = $item->getId();
+
                 //用户信息
-//                $resourceData[$key]['user_id'] = $account->getId();
+                $resourceData[$resourceId]['star_id'] = '11';
+                $resourceData[$resourceId]['resource_user_id'] = $account->getId();
 //                $resourceData[$key]['user_name'] = $account->getUsername();
 //                $resourceData[$key]['full_name'] = $account->getFullName();
 //                $resourceData[$key]['pro_file_pic'] = $account->getProfilePicUrl();
 
                 //图片相关
-                $resourceId = $item->getId();
 
                 $resourceData[$resourceId]['resource_id'] = $resourceId;
                 $resourceData[$resourceId]['resource_from'] = 'instagram';
