@@ -13,21 +13,26 @@ class InstagramController
 //            $instagram->login();
 
             $instagram = new Instagram();
-            $nonPrivateAccountMedias = $instagram->getMedias('ara_go_0211',100);
+            $nonPrivateAccountMedias = $instagram->getMedias('kyo1122', 100);
             if (empty($nonPrivateAccountMedias)) {
                 return true;
             }
-            print_r($nonPrivateAccountMedias);exit();
             $result = [];
             foreach ($nonPrivateAccountMedias as $key => $item) {
                 $account = $item->getOwner();
                 $result[$key]['user_id'] = $account->getId();
-                $result[$key]['img'] = $item->getImageHighResolutionUrl();
+                $result[$key]['type'] = $item->getType();
+                $result[$key]['img_src'] = $item->getImageHighResolutionUrl();
+                $result[$key]['caption'] = $item->getCaption();
                 $result[$key]['created_time'] = $item->getCreatedTime();
+
+                foreach ($item->getSidecarMedias() as $sidecarMedia) {
+                    $result[$key]['sidecar_media'][] = $sidecarMedia->getImageHighResolutionUrl();
+                }
             }
             return $result;
         } catch (\Exception $e) {
-            throw new \Exception($e->getMessage());
+            throw new \InvalidArgumentException($e->getMessage());
         }
     }
 }
