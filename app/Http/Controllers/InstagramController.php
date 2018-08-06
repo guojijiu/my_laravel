@@ -51,7 +51,7 @@ class InstagramController
                 $resourceData[$resourceId]['resource_type'] = $item->getType();
                 $resourceData[$resourceId]['img_urls'] = json_encode($item->getImageHighResolutionUrl());
                 $resourceData[$resourceId]['caption'] = $item->getCaption();
-                $resourceData[$resourceId]['created_at'] = strtotime($item->getCreatedTime());
+                $resourceData[$resourceId]['created_at'] = date('Y-m-d H:i:s', $item->getCreatedTime());
 
                 //组图相关
                 if ($item->getType() == 'sidecar') {
