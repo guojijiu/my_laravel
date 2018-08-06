@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Model\StarDynamic;
 use App\Service\Instagram\InstagramScraper\Instagram;
+use Illuminate\Support\Facades\Request;
 
 class InstagramController
 {
     public function login()
     {
+        $a = $this->downloadImg("https://scontent-hkg3-2.cdninstagram.com/vp/093371944c6371b4ac19eee5ea97c23d/5C103F8C/t51.2885-15/e35/14540436_1672617186400129_5915460037328764928_n.jpg");
+        print_r($a);exit();
+
         try {
 //            $instagram = Instagram::withCredentials('MrXinrain', 'a5711947');
 //            $instagram->login();
@@ -23,7 +28,7 @@ class InstagramController
 
             $userCount = count($imgData);
 
-            $number = $userCount < 100 ? 10 : 105;
+            $number = $userCount >= 100 ? 10 : 100;
 
             $nonPrivateAccountMedias = $instagram->getMedias('kyo1122', $number);
 
@@ -49,20 +54,18 @@ class InstagramController
                 $resourceData[$resourceId]['resource_id'] = $resourceId;
                 $resourceData[$resourceId]['resource_from'] = 'instagram';
                 $resourceData[$resourceId]['resource_type'] = $item->getType();
-                $resourceData[$resourceId]['img_urls'] = json_encode($item->getImageHighResolutionUrl());
+                $resourceData[$resourceId]['img_urls'] = $item->getImageHighResolutionUrl();
                 $resourceData[$resourceId]['caption'] = $item->getCaption();
                 $resourceData[$resourceId]['created_at'] = date('Y-m-d H:i:s', $item->getCreatedTime());
 
                 //组图相关
                 if ($item->getType() == 'sidecar') {
                     $media = $instagram->getMediaByUrl($item->getLink());
-                    $imageUrls = [];
 
                     foreach ($media->getSidecarMedias() as $sidecarMedia) {
-                        $imageUrls[] = $sidecarMedia->getImageHighResolutionUrl();
+                        $resourceData[$resourceId]['img_urls'][] = $sidecarMedia->getImageHighResolutionUrl();
                     }
 
-                    $resourceData[$resourceId]['img_urls'] = json_encode($imageUrls);
                 }
 
             }
@@ -73,6 +76,10 @@ class InstagramController
                 return 'no data';
             }
 
+            array_walk($saveData, function (&$info) {
+                $info['img_urls'] = $this->downloadImg($info['img_urls']);
+            });
+
             StarDynamic::query()->insert($saveData);
 
             return 'save ok!';
@@ -80,5 +87,33 @@ class InstagramController
         } catch (\Exception $e) {
             throw new \InvalidArgumentException($e->getMessage());
         }
+    }
+
+    /**
+     * 下载图片
+     *
+     * @param $imgUrl
+     */
+    private function downloadImg($imgUrl)
+    {
+        //todo 定期删除目录下的图片文件
+
+        $imgObj = new ImageController();
+
+        $imgObj->download($imgUrl);
+
+
+    }
+
+    /**
+     * 上传图片
+     *
+     * @param $filePath
+     */
+    private function updateImg($filePath)
+    {
+        $imgObj = new ImageController();
+
+        $imgObj->uploadImage($filePath);
     }
 }

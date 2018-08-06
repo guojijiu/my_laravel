@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Service\QiNiu;
-use Illuminate\Http\Request;
 
 /**
  * 图片控制器
@@ -13,13 +12,6 @@ use Illuminate\Http\Request;
  */
 class ImageController
 {
-
-    private $request;
-
-    public function __construct(Request $request)
-    {
-        $this->request = $request;
-    }
 
     /**
      * 获取七牛图片服务器token
@@ -41,12 +33,10 @@ class ImageController
      *
      * @return mixed
      */
-    public function uploadImage()
+    public function uploadImage($filePath)
     {
         try {
             $qiNiuParser = new QiNiu();
-
-            $filePath = $this->request['file_path'];
 
             $result = $qiNiuParser->save($filePath);
 
@@ -63,12 +53,11 @@ class ImageController
      *
      * @return string
      */
-    public function download()
+    public function download($imgUrl)
     {
-        $filePath = $this->request['file_path'];
 
         $qiNiuParser = new QiNiu();
 
-        return $qiNiuParser->download($filePath);
+        return $qiNiuParser->download($imgUrl);
     }
 }

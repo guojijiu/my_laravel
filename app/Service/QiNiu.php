@@ -77,16 +77,16 @@ class QiNiu
     /**
      * 图片下载
      *
-     * @param $filePath
+     * @param $imgUrl
      * @return string
      */
-    public function download($filePath)
+    public function download($imgUrl)
     {
 
-        if (empty($filePath)) {
+        if (empty($imgUrl)) {
             throw new \InvalidArgumentException('文件路径不能为空');
         }
 
-        return $this->auth->privateDownloadUrl($filePath);
+        return $this->auth->privateDownloadUrl($imgUrl);
     }
 }
