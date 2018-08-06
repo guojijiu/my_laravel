@@ -84,7 +84,7 @@ class QiNiu
     {
 
         if (empty($imgUrl)) {
-            throw new \InvalidArgumentException('文件路径不能为空');
+            throw new \InvalidArgumentException('图片地址不能为空');
         }
 
         return $this->auth->privateDownloadUrl($imgUrl);
