@@ -104,7 +104,7 @@ class InstagramController
             mkdir($newFile, 0777);
         }
         //TODO 匹配图片格式
-        $newFileName = date('YmdHis') . 'jpg';
+        $newFileName = $newFile . date('YmdHis') . 'jpg';
         $down = file_put_contents($newFileName, $img);
 
         return $down;
