@@ -23,6 +23,9 @@ class InstagramController
 //            }
 //            return $medias;
             $nonPrivateAccountMedias = $instagram->getMedias('kyo1122');
+            $account = $instagram->getAccount('kyo1122');
+            $store = $instagram->getStories();
+
             if (empty($nonPrivateAccountMedias)) {
                 return true;
             }
@@ -30,12 +33,19 @@ class InstagramController
 
             foreach ($nonPrivateAccountMedias as $key => $item) {
 
-                $userId = $item->getOwnerId();
+                //用户信息
+                $result[$key]['user_id'] = $account->getId();
+                $result[$key]['user_name'] = $account->getUsername();
+                $result[$key]['full_name'] = $account->getFullName();
+                $result[$key]['pro_file_pic'] = $account->getProfilePicUrl();
+
+                //图片相关
                 $result[$key]['type'] = $item->getType();
                 $result[$key]['img_src'] = $item->getImageHighResolutionUrl();
                 $result[$key]['caption'] = $item->getCaption();
                 $result[$key]['created_time'] = $item->getCreatedTime();
 
+                //组图相关
                 if ($item->getType() == 'sidecar') {
                     $media = $instagram->getMediaByUrl($item->getLink());
 
@@ -44,16 +54,7 @@ class InstagramController
                     }
                 }
 
-            }
-
-            $account = $instagram->getUsernameById($userId);
-            print_r($account);exit();
-            foreach ($account as $userInfo) {
-
-                $result[$key]['user_id'] = $userInfo->getId();
-                $result[$key]['user_name'] = $userInfo->getUsername();
-                $result[$key]['full_name'] = $userInfo->getFullName();
-                $result[$key]['pro_file_pic'] = $userInfo->getProfilePicUrl();
+                $result[$key]['store'] = $store;
 
             }
 
