@@ -67,13 +67,13 @@ class InstagramController
 
             }
 
-            $saveData = array_diff_key($imgData, $resourceData);
+            $saveData = array_diff_key($resourceData, $imgData);
 
             if (empty($saveData)) {
-                return true;
+                echo 'sss';
             }
 
-            print_r($saveData);exit();
+            return $saveData;
 
         } catch (\Exception $e) {
             throw new \InvalidArgumentException($e->getMessage());
