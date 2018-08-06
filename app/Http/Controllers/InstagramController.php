@@ -51,7 +51,7 @@ class InstagramController
                 $resourceData[$resourceId]['resource_type'] = $item->getType();
                 $resourceData[$resourceId]['img_urls'] = json_encode($item->getImageHighResolutionUrl());
                 $resourceData[$resourceId]['caption'] = $item->getCaption();
-                $resourceData[$resourceId]['created_at'] = $item->getCreatedTime();
+                $resourceData[$resourceId]['created_at'] = strtotime($item->getCreatedTime());
 
                 //组图相关
                 if ($item->getType() == 'sidecar') {
@@ -74,6 +74,8 @@ class InstagramController
             }
 
             StarDynamic::query()->insert($saveData);
+
+            return true;
 
         } catch (\Exception $e) {
             throw new \InvalidArgumentException($e->getMessage());
