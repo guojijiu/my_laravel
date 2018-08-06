@@ -13,13 +13,13 @@ class InstagramController
 //            $instagram->login();
 
             $instagram = new Instagram();
-            $result = $instagram->getPaginateMedias('kyo1122');
-            $medias = $result['medias'];
-            if ($result['hasNextPage'] === true) {
-                $result = $instagram->getPaginateMedias('kyo1122', $result['maxId']);
-                $medias = array_merge($medias, $result['medias']);
-            }
-            return $medias;
+//            $result = $instagram->getPaginateMedias('kyo1122');
+//            $medias = $result['medias'];
+//            if ($result['hasNextPage'] === true) {
+//                $result = $instagram->getPaginateMedias('kyo1122', $result['maxId']);
+//                $medias = array_merge($medias, $result['medias']);
+//            }
+//            return $medias;
             $nonPrivateAccountMedias = $instagram->getMedias('kyo1122', 20);
             if (empty($nonPrivateAccountMedias)) {
                 return true;
@@ -39,6 +39,13 @@ class InstagramController
                     foreach ($media->getSidecarMedias() as $sidecarMedia) {
                         $result[$key]['sidecar_media'][] = $sidecarMedia->getImageHighResolutionUrl();
                     }
+                }
+
+                if($item->getType() == 'video'){
+                    $result[$key]['video1'] = $item->getVideoLowBandwidthUrl();
+                    $result[$key]['video2'] = $item->getVideoLowResolutionUrl();
+                    $result[$key]['video3'] = $item->getVideoStandardResolutionUrl();
+                    $result[$key]['video4'] = $item->getVideoViews();
                 }
 
             }
