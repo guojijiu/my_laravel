@@ -13,7 +13,7 @@ class InstagramController
 //            $instagram->login();
 
             $instagram = new Instagram();
-            $nonPrivateAccountMedias = $instagram->getMedias('ara_go_0211');
+            $nonPrivateAccountMedias = $instagram->getMedias('ara_go_0211',100);
             if (empty($nonPrivateAccountMedias)) {
                 return true;
             }
