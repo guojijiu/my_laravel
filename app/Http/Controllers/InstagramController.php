@@ -21,7 +21,6 @@ class InstagramController
 //            }
 //            return $medias;
             $nonPrivateAccountMedias = $instagram->getMedias('kyo1122');
-            print_r($nonPrivateAccountMedias);exit();
             if (empty($nonPrivateAccountMedias)) {
                 return true;
             }
@@ -29,6 +28,10 @@ class InstagramController
             foreach ($nonPrivateAccountMedias as $key => $item) {
                 $account = $item->getOwner();
                 $result[$key]['user_id'] = $account->getId();
+                $result[$key]['user_name'] = $account->getUsername();
+                $result[$key]['full_name'] = $account->getFullName();
+                $result[$key]['full_name'] = $account->getProfilePicUrl();
+
                 $result[$key]['type'] = $item->getType();
                 $result[$key]['img_src'] = $item->getImageHighResolutionUrl();
                 $result[$key]['caption'] = $item->getCaption();
@@ -40,13 +43,6 @@ class InstagramController
                     foreach ($media->getSidecarMedias() as $sidecarMedia) {
                         $result[$key]['sidecar_media'][] = $sidecarMedia->getImageHighResolutionUrl();
                     }
-                }
-
-                if($item->getType() == 'video'){
-                    $result[$key]['video1'] = $item->getVideoLowBandwidthUrl();
-                    $result[$key]['video2'] = $item->getVideoLowResolutionUrl();
-                    $result[$key]['video3'] = $item->getVideoStandardResolutionUrl();
-                    $result[$key]['video4'] = $item->getVideoViews();
                 }
 
             }
