@@ -73,7 +73,7 @@ class InstagramController
                 return true;
             }
 
-            return $saveData;
+            print_r($saveData);exit();
 
         } catch (\Exception $e) {
             throw new \InvalidArgumentException($e->getMessage());
