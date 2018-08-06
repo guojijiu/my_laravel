@@ -20,7 +20,8 @@ class InstagramController
 //                $medias = array_merge($medias, $result['medias']);
 //            }
 //            return $medias;
-            $nonPrivateAccountMedias = $instagram->getMedias('kyo1122', 20);
+            $nonPrivateAccountMedias = $instagram->getMedias('kyo1122');
+            print_r($nonPrivateAccountMedias);exit();
             if (empty($nonPrivateAccountMedias)) {
                 return true;
             }
