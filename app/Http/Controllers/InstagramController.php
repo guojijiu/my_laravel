@@ -22,8 +22,9 @@ class InstagramController
 //                $medias = array_merge($medias, $result['medias']);
 //            }
 //            return $medias;
-            $nonPrivateAccountMedias = $instagram->getMedias('kyo1122');
-            $account = $instagram->getAccount('kyo1122');
+            $nonPrivateAccountMedias = $instagram->getMedias('kyo1122','100');
+
+//            $account = $instagram->getAccount('kyo1122');
 
             if (empty($nonPrivateAccountMedias)) {
                 return true;
@@ -33,10 +34,10 @@ class InstagramController
             foreach ($nonPrivateAccountMedias as $key => $item) {
 
                 //用户信息
-                $result[$key]['user_id'] = $account->getId();
-                $result[$key]['user_name'] = $account->getUsername();
-                $result[$key]['full_name'] = $account->getFullName();
-                $result[$key]['pro_file_pic'] = $account->getProfilePicUrl();
+//                $result[$key]['user_id'] = $account->getId();
+//                $result[$key]['user_name'] = $account->getUsername();
+//                $result[$key]['full_name'] = $account->getFullName();
+//                $result[$key]['pro_file_pic'] = $account->getProfilePicUrl();
 
                 //图片相关
                 $result[$key]['type'] = $item->getType();
