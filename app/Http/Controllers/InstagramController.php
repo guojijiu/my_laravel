@@ -14,19 +14,27 @@ class InstagramController
      */
     public function handle()
     {
+
+        $res = [];
         Star::query()
             ->where('social_account', '<>', '')
-            ->chunk(5, function ($starData) {
+            ->chunk(5, function ($starData) use (&$res) {
                 foreach ($starData as $starInfo) {
                     $socialAccount = json_decode($starInfo['social_account'], true);
 
                     if (in_array('ig', array_keys($socialAccount))) {
 
-                        $this->login($starInfo['id'], $socialAccount['ig']);
+                        $result = $this->login($starInfo['id'], $socialAccount['ig']);
+
+                        $res[] = [$socialAccount['ig'] => $result];
+
+                        return $res;
 
                     }
                 }
             });
+
+        return $res;
     }
 
     public function login($starId, $igName)
