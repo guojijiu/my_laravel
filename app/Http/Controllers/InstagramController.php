@@ -137,9 +137,10 @@ class InstagramController
      */
     public function dealImg()
     {
+        $dealCount = 0;
         StarDynamic::query()
             ->where(['is_dealed' => '2', 'resource_from' => 'instagram'])
-            ->chunk(10, function ($starData) {
+            ->chunk(10, function ($starData) use (&$dealCount) {
 
                 if (empty($starData)) {
                     return true;
@@ -165,8 +166,12 @@ class InstagramController
                     $updateFileName = is_array($fileName) ? implode(',', $fileName) : $fileName;
 
                     $starInfo->update(['is_dealed' => 1, 'img_urls' => $updateFileName]);
+
+                    $dealCount++;
                 }
             });
+
+        return 'deal ok，处理成功条数：' . $dealCount;
     }
 
     /**
