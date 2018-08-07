@@ -120,12 +120,12 @@ class InstagramController
             $saveData = array_diff_key($resourceData, $imgData);
 
             if (empty($saveData)) {
-                return 'not save data!';
+                return '执行成功，无需要导入数据!';
             }
 
             StarDynamic::query()->insert($saveData);
 
-            return 'save ok!';
+            return '执行成功，成功导入' . count($saveData) . '条数据';
 
         } catch (\Exception $e) {
             throw new \InvalidArgumentException($e->getMessage());
