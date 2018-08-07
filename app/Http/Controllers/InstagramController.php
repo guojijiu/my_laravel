@@ -21,14 +21,14 @@ class InstagramController
 
             //获取当前明星已存数据
             $imgData = StarDynamic::query()
-                ->where('resource_user_id', $account->getId())
+                ->where(['resource_user_id' => $account->getId(), 'resource_from' => 'instagram'])
                 ->get(['id', 'resource_id'])
                 ->keyBy('resource_id')
                 ->toArray();
 
             $userCount = count($imgData);
 
-            $number = $userCount >= 100 ? 10 : 20;
+            $number = $userCount >= 100 ? 10 : 100;
 
             //根据用户名获取instagram账号动态信息
             $nonPrivateAccountMedias = $instagram->getMedias('kyo1122', $number);
