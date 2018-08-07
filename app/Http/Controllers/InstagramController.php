@@ -63,18 +63,18 @@ class InstagramController
 
                     $media = $instagram->getMediaByUrl($item->getLink());
 
-                    $fileNames = [];
+                    $imgUrls = [];
                     foreach ($media->getSidecarMedias() as $sidecarMedia) {
 
                         $imgUrl = $sidecarMedia->getImageThumbnailUrl();
 
                         //图片上传到七牛服务器
-                        $fileName = $this->downloadImg($imgUrl);
+//                        $fileName = $this->downloadImg($imgUrl);
 
-                        $fileNames[] = $fileName;
+                        $imgUrls[] = $imgUrl;
                     }
 
-                    $resourceData[$resourceId]['img_urls'] = implode(',', $fileNames);
+                    $resourceData[$resourceId]['img_urls'] = implode(',', $imgUrls);
 
                 } else {
                     //单图
@@ -82,9 +82,9 @@ class InstagramController
                     $imgUrl = $item->getImageThumbnailUrl();
 
                     //图片上传到七牛服务器
-                    $fileName = $this->downloadImg($imgUrl);
+//                    $fileName = $this->downloadImg($imgUrl);
 
-                    $resourceData[$resourceId]['img_urls'] = $fileName;
+                    $resourceData[$resourceId]['img_urls'] = $imgUrl;
                 }
 
             }
@@ -102,6 +102,40 @@ class InstagramController
         } catch (\Exception $e) {
             throw new \InvalidArgumentException($e->getMessage());
         }
+    }
+
+    public function dealImg()
+    {
+        StarDynamic::query()
+            ->where(['is_dealed' => '2', 'resource_from' => 'instagram'])
+            ->chunk(10, function ($starData) {
+
+                if (empty($starData)) {
+                    return true;
+                }
+
+                foreach ($starData as $starInfo) {
+
+                    if (strpos($starInfo['img_urls'], ',')) {
+
+                        $imgUrls = explode(',', $starInfo['img_urls']);
+
+                        $fileName = [];
+
+                        array_walk($imgUrls, function ($imgUrl) use (&$fileName) {
+                            $fileName = $this->downloadImg($imgUrl);
+                        });
+
+                    } else {
+
+                        $fileName = $this->downloadImg($starInfo['img_urls']);
+                    }
+
+                    $updateFileName = is_array($fileName) ? implode(',', $fileName) : $fileName;
+
+                    $starInfo->update(['is_dealed' => 1, 'img_urls' => $updateFileName]);
+                }
+            });
     }
 
     /**
@@ -132,6 +166,7 @@ class InstagramController
      */
     private function updateImg($filePath)
     {
+
         $imgObj = new ImageController();
 
         $key = 'backstage/star/' . md5(basename($filePath) . time() . rand(1, 99));
