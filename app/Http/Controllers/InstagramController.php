@@ -28,7 +28,7 @@ class InstagramController
 
             $userCount = count($imgData);
 
-            $number = $userCount >= 100 ? 105 : 100;
+            $number = $userCount >= 100 ? 10 : 20;
 
             //根据用户名获取instagram账号动态信息
             $nonPrivateAccountMedias = $instagram->getMedias('kyo1122', $number);
