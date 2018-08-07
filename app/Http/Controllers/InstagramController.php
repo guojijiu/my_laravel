@@ -104,6 +104,9 @@ class InstagramController
         }
     }
 
+    /**
+     * 处理脚本数据
+     */
     public function dealImg()
     {
         StarDynamic::query()
