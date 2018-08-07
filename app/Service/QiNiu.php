@@ -55,7 +55,7 @@ class QiNiu
 
         $token = $this->getToken();
 
-        $key = 'backstage/' . md5(basename($filePath) . time());
+        $key = 'backstage/star/' . md5(basename($filePath) . time() . rand(1, 99));
 
         $uploadMgr = new UploadManager();
 
