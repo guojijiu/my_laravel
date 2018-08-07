@@ -65,7 +65,7 @@ class InstagramController
                     //图片上传到七牛服务器
                     $fileName = $this->downloadImg($imgUrl);
 
-                    $resourceData[$resourceId]['img_urls'] = serialize($fileName);
+                    $resourceData[$resourceId]['img_urls'] = json_encode($fileName);
 
                 }
 
@@ -84,7 +84,7 @@ class InstagramController
                         $fileNames[] = $fileName;
                     }
 
-                    $resourceData[$resourceId]['img_urls'] = serialize($fileNames);
+                    $resourceData[$resourceId]['img_urls'] = json_encode($fileNames);
 
                 }
 
