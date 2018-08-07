@@ -38,6 +38,7 @@ class TestController
      */
     public function test()
     {
+        phpinfo();
         return 'asd';
     }
 

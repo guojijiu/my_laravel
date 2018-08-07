@@ -37,8 +37,8 @@ $router->get('/bridge/test', 'BridgeController@test');
 
 //倒ins明星数据接口
 $router->get('/ins/handle', 'InstagramController@handle');
-//ins登录
-$router->get('/ins/login', 'InstagramController@login');
+//ins保存
+$router->get('/ins/save', 'InstagramController@save');
 //处理ins图片
 $router->get('/ins/deal', 'InstagramController@dealImg');
 

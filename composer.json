@@ -18,6 +18,7 @@
         "php-http/guzzle6-adapter": "^1.1",
         "php-http/message": "^1.6",
         "phpFastCache/phpFastCache": "5.0.*",
+        "predis/predis": "^1.1",
         "qiniu/php-sdk": "^7.2"
     },
     "require-dev": {

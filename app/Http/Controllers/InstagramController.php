@@ -5,9 +5,16 @@ namespace App\Http\Controllers;
 use App\Model\Star;
 use App\Model\StarDynamic;
 use App\Service\Instagram\InstagramScraper\Instagram;
+use Illuminate\Support\Facades\Redis;
 
 class InstagramController
 {
+
+    //设置明星前缀
+    const STAR_PRI = 'ins_star_';
+
+    //设置过期时间
+    const EXPIRE_TIME = 7200;
 
     /**
      * 倒ins明星数据接口
@@ -22,9 +29,11 @@ class InstagramController
                 foreach ($starData as $starInfo) {
                     $socialAccount = json_decode($starInfo['social_account'], true);
 
-                    if (in_array('ig', array_keys($socialAccount))) {
+                    $accountCache = Redis::get(self::STAR_PRI . $socialAccount['ig']);
 
-                        $result = $this->login($starInfo['id'], $socialAccount['ig']);
+                    if (in_array('ig', array_keys($socialAccount)) && empty($accountCache)) {
+
+                        $result = $this->save($starInfo['id'], $socialAccount['ig']);
 
                         $res[] = [$socialAccount['ig'] => $result];
 
@@ -35,7 +44,7 @@ class InstagramController
         return $res;
     }
 
-    public function login($starId, $igName)
+    public function save($starId, $igName)
     {
 
         try {
@@ -120,6 +129,7 @@ class InstagramController
             $saveData = array_diff_key($resourceData, $imgData);
 
             if (empty($saveData)) {
+                Redis::setex(self::STAR_PRI . $igName, self::EXPIRE_TIME, true);
                 return '执行成功，无需要导入数据!';
             }
 
