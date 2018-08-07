@@ -63,7 +63,7 @@ class InstagramController
                     $imgUrl = $item->getImageHighResolutionUrl();
 
                     //图片上传到七牛服务器
-//                    $this->downloadImg($imgUrl);
+                    $this->downloadImg($imgUrl);
 
                     $resourceData[$resourceId]['img_urls'] = serialize($imgUrl);
 
@@ -79,7 +79,7 @@ class InstagramController
                         $imgUrl = $sidecarMedia->getImageHighResolutionUrl();
 
                         //图片上传到七牛服务器
-//                        $this->downloadImg($imgUrl);
+                        $this->downloadImg($imgUrl);
 
                         $imgUrls[] = $imgUrl;
                     }
@@ -91,7 +91,7 @@ class InstagramController
             }
 
             $saveData = array_diff_key($resourceData, $imgData);
-            return $saveData;
+
             if (empty($saveData)) {
                 return 'no data';
             }
