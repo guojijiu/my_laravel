@@ -126,7 +126,7 @@ class InstagramController
                         $fileName = [];
 
                         array_walk($imgUrls, function ($imgUrl) use (&$fileName) {
-                            $fileName = $this->downloadImg($imgUrl);
+                            $fileName[] = $this->downloadImg($imgUrl);
                         });
 
                     } else {
