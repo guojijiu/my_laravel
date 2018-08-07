@@ -11,8 +11,7 @@ class InstagramController
     public function login()
     {
         $this->downloadImg("https://scontent-hkg3-2.cdninstagram.com/vp/093371944c6371b4ac19eee5ea97c23d/5C103F8C/t51.2885-15/e35/14540436_1672617186400129_5915460037328764928_n.jpg");
-        echo 'aa';
-        exit();
+        return 'asd';
         try {
 //            $instagram = Instagram::withCredentials('MrXinrain', 'a5711947');
 //            $instagram->login();
@@ -121,7 +120,7 @@ class InstagramController
 
         $result = $imgObj->uploadImage($filePath);
 
-//        unlink($filePath);
+        unlink($filePath);
 
         return $result;
     }
