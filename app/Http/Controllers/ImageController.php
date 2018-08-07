@@ -31,14 +31,16 @@ class ImageController
     /**
      * 图片上传
      *
+     * @param $key
+     * @param $filePath
      * @return mixed
      */
-    public function uploadImage($filePath)
+    public function uploadImage($key, $filePath)
     {
         try {
             $qiNiuParser = new QiNiu();
 
-            $result = $qiNiuParser->save($filePath);
+            $result = $qiNiuParser->save($key, $filePath);
 
         } catch (\Exception $e) {
             throw new \LogicException($e->getMessage());

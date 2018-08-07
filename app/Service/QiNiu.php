@@ -42,11 +42,12 @@ class QiNiu
     /**
      * 上传图片
      *
+     * @param $key
      * @param $filePath
      * @return mixed
      * @throws \Exception
      */
-    public function save($filePath)
+    public function save($key, $filePath)
     {
 
         if (empty($filePath)) {
@@ -54,8 +55,6 @@ class QiNiu
         }
 
         $token = $this->getToken();
-
-        $key = 'backstage/star/' . md5(basename($filePath) . time() . rand(1, 99));
 
         $uploadMgr = new UploadManager();
 
