@@ -93,21 +93,19 @@ class InstagramController
      * 下载图片
      *
      * @param $imgUrl
+     * @return mixed
      */
     private function downloadImg($imgUrl)
     {
-        //todo 定期删除目录下的图片文件
+        $suffix = substr(strrchr($imgUrl, '.'), 1);
 
         $img = file_get_contents($imgUrl);
-        $newFile = '/usr/local/img/';
-        if (!file_exists($newFile)) {
-            mkdir($newFile, 0777);
-        }
-        //TODO 匹配图片格式
-        $newFileName = $newFile . date('YmdHis') . 'jpg';
-        $down = file_put_contents($newFileName, $img);
 
-        return $down;
+        $fileName = date('YmdHis') . $suffix;
+
+        file_put_contents($fileName, $img);
+
+        return $this->updateImg($fileName);
 
     }
 
@@ -115,11 +113,16 @@ class InstagramController
      * 上传图片
      *
      * @param $filePath
+     * @return mixed
      */
     private function updateImg($filePath)
     {
         $imgObj = new ImageController();
 
-        $imgObj->uploadImage($filePath);
+        $result = $imgObj->uploadImage($filePath);
+
+//        unlink($filePath);
+
+        return $result;
     }
 }
