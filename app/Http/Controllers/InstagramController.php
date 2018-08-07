@@ -60,7 +60,7 @@ class InstagramController
 
                 if ($item->getType() == 'image') {
 
-                    $imgUrl = $item->getImageHighResolutionUrl();
+                    $imgUrl = $item->getImageThumbnailUrl();
 
                     //图片上传到七牛服务器
                     $this->downloadImg($imgUrl);
@@ -76,7 +76,7 @@ class InstagramController
                     $imgUrls = [];
                     foreach ($media->getSidecarMedias() as $sidecarMedia) {
 
-                        $imgUrl = $sidecarMedia->getImageHighResolutionUrl();
+                        $imgUrl = $sidecarMedia->getImageThumbnailUrl();
 
                         //图片上传到七牛服务器
                         $this->downloadImg($imgUrl);
