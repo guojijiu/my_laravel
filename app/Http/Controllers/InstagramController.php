@@ -2,12 +2,34 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Star;
 use App\Model\StarDynamic;
 use App\Service\Instagram\InstagramScraper\Instagram;
 
 class InstagramController
 {
-    public function login()
+
+    /**
+     * 倒ins明星数据接口
+     */
+    public function handle()
+    {
+        Star::query()
+            ->where('social_account', '<>', '')
+            ->chunk(5, function ($starData) {
+                foreach ($starData as $starInfo) {
+                    $socialAccount = json_decode($starInfo['social_account'], true);
+
+                    if (in_array('ig', array_keys($socialAccount))) {
+
+                        $this->login($starInfo['id'], $socialAccount['ig']);
+
+                    }
+                }
+            });
+    }
+
+    public function login($starId, $igName)
     {
 
         try {
@@ -17,7 +39,7 @@ class InstagramController
             $instagram = new Instagram();
 
             //根据用户名获取instagram账号基本信息
-            $account = $instagram->getAccount('kyo1122');
+            $account = $instagram->getAccount($igName);
 
             //获取当前明星已存数据
             $imgData = StarDynamic::query()
@@ -31,7 +53,7 @@ class InstagramController
             $number = $userCount >= 100 ? 10 : 100;
 
             //根据用户名获取instagram账号动态信息
-            $nonPrivateAccountMedias = $instagram->getMedias('kyo1122', $number);
+            $nonPrivateAccountMedias = $instagram->getMedias($igName, $number);
 
             if (empty($nonPrivateAccountMedias)) {
                 return true;
@@ -44,7 +66,7 @@ class InstagramController
                 $resourceId = $item->getId();
 
                 //用户信息
-                $resourceData[$resourceId]['star_id'] = '11';
+                $resourceData[$resourceId]['star_id'] = $starId;
                 $resourceData[$resourceId]['resource_user_id'] = $account->getId();
 //                $resourceData[$key]['user_name'] = $account->getUsername();
 //                $resourceData[$key]['full_name'] = $account->getFullName();

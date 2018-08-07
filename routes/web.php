@@ -35,9 +35,11 @@ $router->get('/Exception/test', 'ExceptionController@test');
 
 $router->get('/bridge/test', 'BridgeController@test');
 
+//倒ins明星数据接口
+$router->get('/ins/handle', 'InstagramController@handle');
 //ins登录
 $router->get('/ins/login', 'InstagramController@login');
-//ins登录
+//处理ins图片
 $router->get('/ins/deal', 'InstagramController@dealImg');
 
 //获取图片token
