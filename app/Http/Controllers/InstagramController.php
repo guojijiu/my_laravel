@@ -28,8 +28,6 @@ class InstagramController
 
                         $res[] = [$socialAccount['ig'] => $result];
 
-                        return $res;
-
                     }
                 }
             });
