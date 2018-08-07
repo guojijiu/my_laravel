@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Model\StarDynamic;
+use App\Model\StarDynamic;
 use App\Service\Instagram\InstagramScraper\Instagram;
 
 class InstagramController
@@ -65,7 +65,7 @@ class InstagramController
                     //图片上传到七牛服务器
 //                    $this->downloadImg($imgUrl);
 
-                    $resourceData[$resourceId]['img_urls'] = $imgUrl;
+                    $resourceData[$resourceId]['img_urls'] = serialize($imgUrl);
 
                 }
 
@@ -73,6 +73,7 @@ class InstagramController
                 if ($item->getType() == 'sidecar') {
                     $media = $instagram->getMediaByUrl($item->getLink());
 
+                    $imgUrls = [];
                     foreach ($media->getSidecarMedias() as $sidecarMedia) {
 
                         $imgUrl = $sidecarMedia->getImageHighResolutionUrl();
@@ -80,15 +81,17 @@ class InstagramController
                         //图片上传到七牛服务器
 //                        $this->downloadImg($imgUrl);
 
-                        $resourceData[$resourceId]['img_urls'][] = $imgUrl;
+                        $imgUrls[] = $imgUrl;
                     }
+
+                    $resourceData[$resourceId]['img_urls'] = serialize($imgUrls);
 
                 }
 
             }
 
             $saveData = array_diff_key($resourceData, $imgData);
-return $saveData;
+            return $saveData;
             if (empty($saveData)) {
                 return 'no data';
             }
