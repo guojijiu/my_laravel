@@ -116,7 +116,7 @@ class InstagramController
 
         $img = file_get_contents($imgUrl);
 
-        $fileName = date('YmdHis') . '.' . $suffix;
+        $fileName = date('YmdHis') . rand(1, 99) . '.' . $suffix;
 
         file_put_contents($fileName, $img);
 
