@@ -58,19 +58,9 @@ class InstagramController
                 $resourceData[$resourceId]['caption'] = $item->getCaption();
                 $resourceData[$resourceId]['created_at'] = date('Y-m-d H:i:s', $item->getCreatedTime());
 
-                if ($item->getType() == 'image') {
-
-                    $imgUrl = $item->getImageThumbnailUrl();
-
-                    //图片上传到七牛服务器
-                    $fileName = $this->downloadImg($imgUrl);
-
-                    $resourceData[$resourceId]['img_urls'] = json_encode($fileName);
-
-                }
-
                 //组图相关
                 if ($item->getType() == 'sidecar') {
+
                     $media = $instagram->getMediaByUrl($item->getLink());
 
                     $fileNames = [];
@@ -84,8 +74,17 @@ class InstagramController
                         $fileNames[] = $fileName;
                     }
 
-                    $resourceData[$resourceId]['img_urls'] = json_encode($fileNames);
+                    $resourceData[$resourceId]['img_urls'] = serialize($fileNames);
 
+                } else {
+                    //单图
+
+                    $imgUrl = $item->getImageThumbnailUrl();
+
+                    //图片上传到七牛服务器
+                    $fileName = $this->downloadImg($imgUrl);
+
+                    $resourceData[$resourceId]['img_urls'] = serialize($fileName);
                 }
 
             }
@@ -137,7 +136,7 @@ class InstagramController
 
         $key = 'backstage/star/' . md5(basename($filePath) . time() . rand(1, 99));
 
-        $imgObj->uploadImage($key,$filePath);
+        $imgObj->uploadImage($key, $filePath);
 
         unlink($filePath);
 
