@@ -204,7 +204,7 @@ class InstagramController
         $img = file_get_contents($imgUrl);
 
         $path = '/usr/local/src/images/';
-        if (!file_exists($path)) {
+        if (!is_dir($path)) {
             mkdir("$path", 0777, true);
         }
 
