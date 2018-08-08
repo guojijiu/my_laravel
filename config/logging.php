@@ -56,6 +56,12 @@ return [
             'path' => storage_path('logs/business/ins/' . date('Ymd') . '-' . env('APP_NAME') . '.log'),
         ],
 
+        'ins_img' => [
+            'driver' => 'daily',
+            'level' => 'info',
+            'path' => storage_path('logs/business/ins/' . date('Ymd') . '-' . env('APP_NAME') . '.log'),
+        ],
+
         'slack' => [
             'driver' => 'slack',
             'url' => env('LOG_SLACK_WEBHOOK_URL'),
