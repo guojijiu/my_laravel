@@ -204,6 +204,9 @@ class InstagramController
         $img = file_get_contents($imgUrl);
 
         $path = '/usr/local/src/images/';
+        if (!file_exists($path)) {
+            mkdir("$path", 0777, true);
+        }
 
         $fileName = $path . date('YmdHis') . rand(1, 99) . '.' . $suffix;
 
