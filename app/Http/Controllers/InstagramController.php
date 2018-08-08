@@ -10,12 +10,6 @@ use Illuminate\Support\Facades\Redis;
 class InstagramController
 {
 
-    public function __construct()
-    {
-        //不设置执行时间
-        ini_set('max_execution_time', '0');
-    }
-
     //设置明星前缀
     const STAR_PRI = 'star:ins_star_';
 
@@ -27,7 +21,8 @@ class InstagramController
      */
     public function handle()
     {
-
+        //不设置执行时间
+        ini_set('max_execution_time', '0');
         $res = [];
         Star::query()
             ->where('social_account', '<>', '')
@@ -157,6 +152,8 @@ class InstagramController
      */
     public function dealImg()
     {
+        //不设置执行时间
+        ini_set('max_execution_time', '0');
         $dealCount = 0;
         StarDynamic::query()
             ->where(['is_dealed' => '2', 'resource_from' => 'instagram'])
