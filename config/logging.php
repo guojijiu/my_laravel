@@ -40,15 +40,20 @@ return [
 
         'single' => [
             'driver' => 'single',
-            'path' => storage_path('logs/' . date('Ymd') . '-' . 'laravel.log'),
+            'path' => storage_path('logs/' . date('Ymd') . '-' . env('APP_NAME') . '.log'),
             'level' => 'debug',
         ],
 
         'daily' => [
             'driver' => 'daily',
-            'path' => storage_path('logs/' . date('Ymd') . '-' . 'laravel.log'),
+            'path' => storage_path('logs/' . date('Ymd') . '-' . env('APP_NAME') . '.log'),
             'level' => 'debug',
             'days' => 7,
+        ],
+        'ins' => [
+            'driver' => 'daily',
+            'level' => 'info',
+            'path' => storage_path('logs/business/ins/' . date('Ymd') . '-' . env('APP_NAME') . '.log'),
         ],
 
         'slack' => [
