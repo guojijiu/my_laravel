@@ -498,19 +498,16 @@ class Media extends AbstractModel
                 $this->type = static::TYPE_VIDEO;
                 break;
             case 'videos':
-//                $this->videoLowResolutionUrl = $arr[$prop]['low_resolution']['url'];
-                $this->videoLowResolutionUrl = $arr;
+                $this->videoLowResolutionUrl = $arr[$prop]['low_resolution']['url'];
                 $this->videoStandardResolutionUrl = $arr[$prop]['standard_resolution']['url'];
                 $this->videoLowBandwidthUrl = $arr[$prop]['low_bandwidth']['url'];
                 break;
             case 'video_resources':
                 foreach ($value as $video) {
                     if ($video['profile'] == 'MAIN') {
-//                        $this->videoStandardResolutionUrl = $video['src'];
-                        $this->videoStandardResolutionUrl = $video;
+                        $this->videoStandardResolutionUrl = $value;//$video['src'];
                     } elseif ($video['profile'] == 'BASELINE') {
-//                        $this->videoLowResolutionUrl = $video['src'];
-                        $this->videoLowResolutionUrl = $video;
+                        $this->videoLowResolutionUrl = $video['src'];
                         $this->videoLowBandwidthUrl = $video['src'];
                     }
                 }
