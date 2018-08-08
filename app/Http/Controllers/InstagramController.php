@@ -70,11 +70,11 @@ class InstagramController
 
             $userCount = count($imgData);
 
-            $number = $userCount >= 100 ? 5 : 100;
+            $number = $userCount >= 100 ? 20 : 100;
 
             //根据用户名获取instagram账号动态信息
             $nonPrivateAccountMedias = $instagram->getMedias($igName, $number);
-print_r($nonPrivateAccountMedias);exit();
+
             if (empty($nonPrivateAccountMedias)) {
                 return true;
             }
@@ -84,6 +84,13 @@ print_r($nonPrivateAccountMedias);exit();
             foreach ($nonPrivateAccountMedias as $item) {
 
                 $resourceId = $item->getId();
+
+                //视频相关
+                $resourceData[$resourceId]['carousel'] = $item->getCarouselMedia();
+                $resourceData[$resourceId]['video1'] = $item->getVideoLowBandwidthUrl();
+                $resourceData[$resourceId]['video2'] = $item->getVideoStandardResolutionUrl();
+                $resourceData[$resourceId]['video3'] = $item->getVideoViews();
+                $resourceData[$resourceId]['video4'] = $item->getVideoLowResolutionUrl();
 
                 //用户信息
                 $resourceData[$resourceId]['star_id'] = $starId;
