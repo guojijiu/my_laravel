@@ -59,7 +59,7 @@ return [
         'ins_img' => [
             'driver' => 'daily',
             'level' => 'info',
-            'path' => storage_path('logs/business/ins/' . date('Ymd') . '-' . env('APP_NAME') . '.log'),
+            'path' => storage_path('logs/business/ins_img/' . date('Ymd') . '-' . env('APP_NAME') . '.log'),
         ],
 
         'slack' => [
