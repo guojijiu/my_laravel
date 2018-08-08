@@ -135,12 +135,12 @@ class InstagramController
 
             if (empty($saveData)) {
                 Redis::setex(self::STAR_PRI . $igName, self::EXPIRE_TIME, true);
-                return '执行成功，无需要导入数据!';
+                return 'deal ok,on data!';
             }
 
             StarDynamic::query()->insert($saveData);
 
-            return '执行成功，成功导入' . count($saveData) . '条数据';
+            return 'deal ok，number:' . count($saveData);
 
         } catch (\Exception $e) {
             throw new \InvalidArgumentException($e->getMessage());
@@ -188,7 +188,7 @@ class InstagramController
                 }
             });
 
-        return 'deal ok，处理成功条数：' . $dealCount;
+        return 'deal ok，number：' . $dealCount;
     }
 
     /**
