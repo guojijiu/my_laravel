@@ -37,13 +37,14 @@ class Instagram extends Command
 
             $insObj = new InstagramController();
 
-            $insObj->handle();
+            $result = $insObj->handle();
 
         } catch (\Exception $e) {
             echo 'error:' . $e->getMessage() . ', file: ' . $e->getFile() . ', line:' . $e->getLine();
             $this->log->error('error:' . $e->getMessage() . ', line:' . $e->getLine());
         }
 
+        $this->log->info('-----本次同步完成,处理结果:' . $result . '-----');
         $this->log->info('-----本次同步完成, 花费时间:' . (microtime(true) - $time) . '-----');
     }
 
