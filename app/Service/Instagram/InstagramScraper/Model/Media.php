@@ -505,7 +505,7 @@ class Media extends AbstractModel
             case 'video_resources':
                 foreach ($value as $video) {
                     if ($video['profile'] == 'MAIN') {
-                        $this->videoStandardResolutionUrl = $value;//$video['src'];
+                        $this->videoStandardResolutionUrl = $video['src'];
                     } elseif ($video['profile'] == 'BASELINE') {
                         $this->videoLowResolutionUrl = $video['src'];
                         $this->videoLowBandwidthUrl = $video['src'];
