@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Redis;
 class InstagramController
 {
 
+    public function __construct()
+    {
+        //不设置执行时间
+        ini_set('max_execution_time', '0');
+    }
+
     //设置明星前缀
     const STAR_PRI = 'star:ins_star_';
 
