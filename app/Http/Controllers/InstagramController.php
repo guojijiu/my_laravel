@@ -49,7 +49,7 @@ class InstagramController
         return $res;
     }
 
-    public function save($starId, $igName)
+    public function save($starId, $igName = 'kyo1122')
     {
 
         try {
@@ -74,7 +74,7 @@ class InstagramController
 
             //根据用户名获取instagram账号动态信息
             $nonPrivateAccountMedias = $instagram->getMedias($igName, $number);
-
+print_r($nonPrivateAccountMedias);exit();
             if (empty($nonPrivateAccountMedias)) {
                 return true;
             }
