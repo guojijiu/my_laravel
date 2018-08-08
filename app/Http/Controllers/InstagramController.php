@@ -11,7 +11,7 @@ class InstagramController
 {
 
     //设置明星前缀
-    const STAR_PRI = 'ins_star_';
+    const STAR_PRI = 'star:ins_star_';
 
     //设置过期时间
     const EXPIRE_TIME = 7200;
@@ -29,9 +29,13 @@ class InstagramController
                 foreach ($starData as $starInfo) {
                     $socialAccount = json_decode($starInfo['social_account'], true);
 
-                    $accountCache = Redis::get(self::STAR_PRI . $socialAccount['ig']);
+                    if (in_array('ig', array_keys($socialAccount))) {
 
-                    if (in_array('ig', array_keys($socialAccount)) && empty($accountCache)) {
+                        $accountCache = Redis::get(self::STAR_PRI . $socialAccount['ig']);
+
+                        if (isset($accountCache)) {
+                            continue;
+                        }
 
                         $result = $this->save($starInfo['id'], $socialAccount['ig']);
 
