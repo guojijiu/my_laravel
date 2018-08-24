@@ -48,3 +48,6 @@ $router->get('/img/getToken', 'ImageController@getQiNiuToken');
 $router->get('/img/upload', 'ImageController@uploadImage');
 //图片下载
 $router->get('/img/download', 'ImageController@download');
+
+//文字翻译
+$router->get('/translate', 'TranslateController@translate');
