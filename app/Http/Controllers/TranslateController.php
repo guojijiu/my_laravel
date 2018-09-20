@@ -11,8 +11,9 @@ class TranslateController
 {
 
     //翻译入口
-    public function translate($query = '')
+    public function translate()
     {
+        $query = $_REQUEST['q'];
         try {
             $args = array(
                 'q' => $query,
