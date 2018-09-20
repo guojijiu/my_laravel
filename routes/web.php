@@ -51,3 +51,6 @@ $router->get('/img/download', 'ImageController@download');
 
 //文字翻译
 $router->get('/translate', 'TranslateController@translate');
+
+//获取html内容
+$router->get('/getHtml', 'GetHtmlValue@test');

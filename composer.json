@@ -19,7 +19,9 @@
         "php-http/message": "^1.6",
         "phpFastCache/phpFastCache": "5.0.*",
         "predis/predis": "^1.1",
-        "qiniu/php-sdk": "^7.2"
+        "qiniu/php-sdk": "^7.2",
+        "symfony/css-selector": "^4.1",
+        "symfony/dom-crawler": "^4.1"
     },
     "require-dev": {
         "filp/whoops": "^2.0",

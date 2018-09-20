@@ -11,7 +11,7 @@ class TranslateController
 {
 
     //翻译入口
-    public function translate($query = 'T.O.P 오디오 가이드2016 르코르뷔지에 서울특별전#예술의전당 #lecorbusier #seoul')
+    public function translate($query = '')
     {
         try {
             $args = array(
