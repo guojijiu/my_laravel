@@ -156,6 +156,8 @@ class InsController
                 if ($item->getType() == 'video') {
                     $json_media_by_url = $instagram->getMediaByUrl($item->getLink());
                     $resourceData[$resourceId]['video_url'] = $json_media_by_url['videoStandardResolutionUrl'];
+                } else {
+                    $resourceData[$resourceId]['video_url'] = '';
                 }
 
             }
