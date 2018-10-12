@@ -155,8 +155,13 @@ class InsController
 
             }
 
-            $saveData = array_diff_key($resourceData, $imgData);
+            if ($item->getType() == 'video') {
+                $json_media_by_url = $instagram->getMediaByUrl($item->getLink());
+                $resourceData[$resourceId]['video_url'] = $json_media_by_url['videoStandardResolutionUrl'];
+            }
 
+            $saveData = array_diff_key($resourceData, $imgData);
+print_r($saveData);exit();
             if (empty($saveData)) {
                 $this->redisCli::setex(self::STAR_PRI . $igName, self::EXPIRE_TIME, true);
                 return 'deal ok,on data!';
