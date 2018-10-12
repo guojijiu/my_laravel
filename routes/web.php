@@ -54,3 +54,6 @@ $router->get('/translate', 'TranslateController@translate');
 
 //获取html内容
 $router->get('/getHtml', 'GetHtmlValue@test');
+
+//获取ins信息
+$router->get('/test/ins/getInfo', 'InsController@save');
