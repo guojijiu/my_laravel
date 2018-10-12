@@ -153,12 +153,13 @@ class InsController
                     $resourceData[$resourceId]['img_urls'] = $imgUrl;
                 }
 
+                if ($item->getType() == 'video') {
+                    $json_media_by_url = $instagram->getMediaByUrl($item->getLink());
+                    $resourceData[$resourceId]['video_url'] = $json_media_by_url['videoStandardResolutionUrl'];
+                }
+
             }
 
-            if ($item->getType() == 'video') {
-                $json_media_by_url = $instagram->getMediaByUrl($item->getLink());
-                $resourceData[$resourceId]['video_url'] = $json_media_by_url['videoStandardResolutionUrl'];
-            }
 
             $saveData = array_diff_key($resourceData, $imgData);
 
