@@ -61,7 +61,7 @@ class InsController
         return $res;
     }
 
-    public function save($starId = '16', $igName = 'kyo1122')
+    public function save($starId, $igName)
     {
 
         try {
@@ -80,7 +80,7 @@ class InsController
 
             //根据用户名获取instagram账号基本信息
             $account = $instagram->getAccount($igName);
-print_r($account);exit();
+
             if (empty($account)) {
                 return 'deal ok,on user!' . $igName;
             }
