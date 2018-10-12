@@ -161,7 +161,7 @@ class InsController
             }
 
             $saveData = array_diff_key($resourceData, $imgData);
-print_r($saveData);exit();
+
             if (empty($saveData)) {
                 $this->redisCli::setex(self::STAR_PRI . $igName, self::EXPIRE_TIME, true);
                 return 'deal ok,on data!';
