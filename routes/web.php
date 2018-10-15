@@ -57,3 +57,5 @@ $router->get('/getHtml', 'GetHtmlValue@test');
 
 //获取ins信息
 $router->get('/test/ins/getInfo', 'InsController@save');
+//下载url地址
+$router->get('/test/ins/download', 'InsController@downloadImg');
