@@ -155,6 +155,10 @@ class InsController
 //                        $fileName = $this->downloadImg($imgUrl);
 
                         $imgUrls[] = $imgUrl;
+                        if ($sidecarMedia->getType() == 'video') {
+                            $resourceData[$resourceId]['video_url'] = current(((array)$sidecarMedia['videoStandardResolutionUrl']));
+                            continue;
+                        }
                     }
 
                     $resourceData[$resourceId]['img_urls'] = implode(',', $imgUrls);
