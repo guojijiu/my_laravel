@@ -124,6 +124,23 @@ class InsController
                 $resourceData[$resourceId]['caption'] = $item->getCaption();
                 $resourceData[$resourceId]['created_at'] = date('Y-m-d H:i:s', $item->getCreatedTime());
 
+                if ($item->getType() == 'video') {
+                    $json_media_by_url = $instagram->getMediaByUrl($item->getLink());
+                    $resourceData[$resourceId]['video_url'] = $json_media_by_url['videoStandardResolutionUrl'];
+                    //单图
+
+                    $imgUrl = $item->getImageThumbnailUrl();
+
+                    //图片上传到七牛服务器
+//                    $fileName = $this->downloadImg($imgUrl);
+
+                    $resourceData[$resourceId]['img_urls'] = $imgUrl;
+
+                    continue;
+                } else {
+                    $resourceData[$resourceId]['video_url'] = '';
+                }
+
                 //组图相关
                 if ($item->getType() == 'sidecar') {
 
@@ -151,13 +168,6 @@ class InsController
 //                    $fileName = $this->downloadImg($imgUrl);
 
                     $resourceData[$resourceId]['img_urls'] = $imgUrl;
-                }
-
-                if ($item->getType() == 'video') {
-                    $json_media_by_url = $instagram->getMediaByUrl($item->getLink());
-                    $resourceData[$resourceId]['video_url'] = $json_media_by_url['videoStandardResolutionUrl'];
-                } else {
-                    $resourceData[$resourceId]['video_url'] = '';
                 }
 
             }

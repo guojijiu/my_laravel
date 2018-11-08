@@ -59,3 +59,5 @@ $router->get('/getHtml', 'GetHtmlValue@test');
 $router->get('/test/ins/getInfo', 'InsController@save');
 //下载url地址
 $router->get('/test/ins/download', 'InsController@downloadImg');
+//获取明星关系excel数据
+$router->get('/excel/star', 'ExcelController@starRelation');
