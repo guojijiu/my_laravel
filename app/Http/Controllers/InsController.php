@@ -157,6 +157,7 @@ class InsController
                         $imgUrls[] = $imgUrl;
                         if ($sidecarMedia->getType() == 'video') {
                             $resourceData[$resourceId]['video_url'] = current(((array)$sidecarMedia['videoStandardResolutionUrl']));
+                            $resourceData[$resourceId]['img_urls'] = implode(',', $imgUrls);
                             continue;
                         }
                     }
