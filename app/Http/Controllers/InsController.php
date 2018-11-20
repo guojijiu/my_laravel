@@ -124,6 +124,46 @@ class InsController
                 $resourceData[$resourceId]['caption'] = $item->getCaption();
                 $resourceData[$resourceId]['created_at'] = date('Y-m-d H:i:s', $item->getCreatedTime());
 
+                $igType = $item->getType();
+                switch ($igType) {
+                    case 'image':
+                        //单图
+                        $imgUrl = $item->getImageThumbnailUrl();
+                        $resourceData[$resourceId]['img_urls'] = $imgUrl;
+                        $resourceData[$resourceId]['video_url'] = '';
+                        break;
+                    case 'video':
+                        //单视频
+                        $json_media_by_url = $instagram->getMediaByUrl($item->getLink());
+                        $resourceData[$resourceId]['video_url'] = $json_media_by_url['videoStandardResolutionUrl'];
+                        $imgUrl = $item->getImageThumbnailUrl();
+                        $resourceData[$resourceId]['img_urls'] = $imgUrl;
+                        break;
+                    case 'sidecar':
+                        //多图或者多视频或者多图视频结合
+                        $media = $instagram->getMediaByUrl($item->getLink());
+
+                        $imgUrls = [];
+                        foreach ($media->getSidecarMedias() as $sidecarMedia) {
+
+                            $imgUrl = $sidecarMedia->getImageThumbnailUrl();
+
+                            $imgUrls[] = $imgUrl;
+                            if ($sidecarMedia->getType() == 'video') {
+                                $resourceData[$resourceId]['video_url'] = current(((array)$sidecarMedia['videoStandardResolutionUrl']));
+                                $resourceData[$resourceId]['img_urls'] = implode(',', $imgUrls);
+                                continue;
+                            }
+                        }
+
+                        break;
+
+                    case 'carousel':
+                        break;
+                    default:
+
+                }
+return $resourceData;
                 if ($item->getType() == 'video') {
                     $json_media_by_url = $instagram->getMediaByUrl($item->getLink());
                     $resourceData[$resourceId]['video_url'] = $json_media_by_url['videoStandardResolutionUrl'];
