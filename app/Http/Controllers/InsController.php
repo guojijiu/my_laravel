@@ -116,14 +116,13 @@ class InsController
 //                $resourceData[$key]['full_name'] = $account->getFullName();
 //                $resourceData[$key]['pro_file_pic'] = $account->getProfilePicUrl();
 
-                //图片相关
-
                 $resourceData[$resourceId]['resource_id'] = $resourceId;
                 $resourceData[$resourceId]['resource_from'] = 'instagram';
                 $resourceData[$resourceId]['resource_type'] = $item->getType();
                 $resourceData[$resourceId]['caption'] = $item->getCaption();
                 $resourceData[$resourceId]['created_at'] = date('Y-m-d H:i:s', $item->getCreatedTime());
 
+                //资源类型
                 $igType = $item->getType();
                 switch ($igType) {
                     case 'image':
@@ -144,80 +143,28 @@ class InsController
                         $media = $instagram->getMediaByUrl($item->getLink());
 
                         $imgUrls = [];
-                        foreach ($media->getSidecarMedias() as $sidecarMedia) {
+                        $videoUrls = [];
+                        foreach ($media->getSidecarMedias() as $key => $sidecarMedia) {
 
-                            $imgUrl = $sidecarMedia->getImageThumbnailUrl();
+                            $imgUrls[] = $sidecarMedia->getImageThumbnailUrl();
 
-                            $imgUrls[] = $imgUrl;
                             if ($sidecarMedia->getType() == 'video') {
-                                $resourceData[$resourceId]['video_url'] = current(((array)$sidecarMedia['videoStandardResolutionUrl']));
-                                $resourceData[$resourceId]['img_urls'] = implode(',', $imgUrls);
-                                continue;
+                                $videoUrls[$key] = current(((array)$sidecarMedia['videoStandardResolutionUrl']));
                             }
                         }
 
+                        //图片整合
+                        $resourceData[$resourceId]['img_urls'] = implode(',', $imgUrls);
+                        //视频整合
+                        $resourceData[$resourceId]['video_url'] = json_encode($videoUrls);
                         break;
-
                     case 'carousel':
+                        $resourceData = [];
                         break;
                     default:
-
+                        $resourceData = [];
                 }
-return $resourceData;
-                if ($item->getType() == 'video') {
-                    $json_media_by_url = $instagram->getMediaByUrl($item->getLink());
-                    $resourceData[$resourceId]['video_url'] = $json_media_by_url['videoStandardResolutionUrl'];
-                    //单图
-
-                    $imgUrl = $item->getImageThumbnailUrl();
-
-                    //图片上传到七牛服务器
-//                    $fileName = $this->downloadImg($imgUrl);
-
-                    $resourceData[$resourceId]['img_urls'] = $imgUrl;
-
-                    continue;
-                } else {
-                    $resourceData[$resourceId]['video_url'] = '';
-                }
-
-                //组图相关
-                if ($item->getType() == 'sidecar') {
-
-                    $media = $instagram->getMediaByUrl($item->getLink());
-
-                    $imgUrls = [];
-                    foreach ($media->getSidecarMedias() as $sidecarMedia) {
-
-                        $imgUrl = $sidecarMedia->getImageThumbnailUrl();
-
-                        //图片上传到七牛服务器
-//                        $fileName = $this->downloadImg($imgUrl);
-
-                        $imgUrls[] = $imgUrl;
-                        if ($sidecarMedia->getType() == 'video') {
-                            $resourceData[$resourceId]['video_url'] = current(((array)$sidecarMedia['videoStandardResolutionUrl']));
-                            $resourceData[$resourceId]['img_urls'] = implode(',', $imgUrls);
-                            continue;
-                        }
-                    }
-
-                    $resourceData[$resourceId]['img_urls'] = implode(',', $imgUrls);
-
-                } else {
-                    //单图
-
-                    $imgUrl = $item->getImageThumbnailUrl();
-
-                    //图片上传到七牛服务器
-//                    $fileName = $this->downloadImg($imgUrl);
-
-                    $resourceData[$resourceId]['img_urls'] = $imgUrl;
-                }
-
             }
-
-
             $saveData = array_diff_key($resourceData, $imgData);
 
             if (empty($saveData)) {
@@ -276,7 +223,7 @@ return $resourceData;
                 }
             });
 
-        return 'deal ok number：' . $dealCount;
+        return 'deal ok number:' . $dealCount;
     }
 
     /**
