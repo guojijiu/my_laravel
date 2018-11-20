@@ -159,10 +159,10 @@ class InsController
                         $resourceData[$resourceId]['video_url'] = json_encode($videoUrls);
                         break;
                     case 'carousel':
-                        $resourceData = [];
+                        $resourceData = '';
                         break;
                     default:
-                        $resourceData = [];
+                        $resourceData = '';
                 }
             }
             $saveData = array_diff_key($resourceData, $imgData);
