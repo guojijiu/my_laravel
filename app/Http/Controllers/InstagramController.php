@@ -257,11 +257,15 @@ class InstagramController
 
                     $insInfo = $instagram->getMediaById($starInfo['resource_id']);
 
-                    $fileName = $this->downloadImg($insInfo['url']);
+                    $url = current((array)$insInfo['videoStandardResolutionUrl']);
 
-                    $updateFileName = is_array($fileName) ? implode(',', $fileName) : $fileName;
+                    if (empty($url)) {
+                        continue;
+                    }
 
-                    $starInfo->update(['is_dealed' => 1, 'img_urls' => $updateFileName]);
+                    $vodVideoId = $this->downloadImg($url);
+
+                    $starInfo->update(['is_deal_video' => 1, 'video_url' => $vodVideoId]);
 
                     $dealCount++;
 
