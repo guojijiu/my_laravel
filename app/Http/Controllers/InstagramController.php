@@ -237,4 +237,37 @@ class InstagramController
 
         return $key;
     }
+
+    public function dealVideoSync()
+    {
+        //不设置执行时间
+        ini_set('max_execution_time', '0');
+        $dealCount = 0;
+        $instagram = new Instagram();
+        StarDynamic::query()
+            ->where('video_url', '<>', '')
+            ->where(['is_deal_video' => '2', 'resource_from' => 'instagram', 'resource_type' => 'video'])
+            ->chunk(10, function ($starData) use (&$dealCount, $instagram) {
+
+                if (empty($starData)) {
+                    return true;
+                }
+
+                foreach ($starData as $starInfo) {
+
+                    $insInfo = $instagram->getMediaById($starInfo['resource_id']);
+
+                    $fileName = $this->downloadImg($insInfo['url']);
+
+                    $updateFileName = is_array($fileName) ? implode(',', $fileName) : $fileName;
+
+                    $starInfo->update(['is_dealed' => 1, 'img_urls' => $updateFileName]);
+
+                    $dealCount++;
+
+                }
+            });
+
+        return 'deal ok number:' . $dealCount;
+    }
 }

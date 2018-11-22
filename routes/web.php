@@ -41,6 +41,8 @@ $router->get('/ins/handle', 'InstagramController@handle');
 $router->get('/ins/save', 'InstagramController@save');
 //处理ins图片
 $router->get('/ins/deal', 'InstagramController@dealImg');
+//获取明星关系excel数据
+$router->get('/ins/dealVideoSync', 'InstagramController@dealVideoSync');
 
 //获取图片token
 $router->get('/img/getToken', 'ImageController@getQiNiuToken');
