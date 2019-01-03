@@ -20,13 +20,13 @@ class ElasticSearchController
             'transfer_stats' => [
                 'total_time' => 100
             ],
-            'body' => fopen('aa.json', 'a+')
+            'body' => fopen('es.json', 'a+')
         ]);
 
         $this->client = ClientBuilder::create()
 //            ->setHandler($handler)
-            ->setHosts(['127.0.0.1:9201'])//配置Es服务所在位置
-            ->setRetries(5)//设置重试次数
+            ->setHosts(['127.0.0.1:9200'])//配置Es服务所在位置
+            ->setRetries(2)//设置重试次数
             ->build();
     }
 
@@ -69,8 +69,8 @@ class ElasticSearchController
     public function searchDocument()
     {
         $params = [
-            'index' => 'my_index',
-            'type' => 'my_type',
+            'index' => 'stars',
+            'type' => 'stars',
             'body' => [
                 'query' => [
                     'match' => [

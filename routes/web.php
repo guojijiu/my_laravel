@@ -63,3 +63,5 @@ $router->get('/test/ins/getInfo', 'InsController@save');
 $router->get('/test/ins/download', 'InsController@downloadImg');
 //获取明星关系excel数据
 $router->get('/excel/star', 'ExcelController@starRelation');
+//获取奖项关系excel数据
+$router->get('/excel/prize', 'ExcelController@PrizeRelation');
