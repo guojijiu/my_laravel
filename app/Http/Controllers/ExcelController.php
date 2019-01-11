@@ -170,7 +170,7 @@ class ExcelController
                     }
                 } else {
                     $starInfo = Star::query()->where('name', $star)->first();
-                    $prizeResource[$key]['resource_id'] = $starInfo['id'];
+                    $prizeResource[$key]['resource_id'] = $starInfo['id'] ?? 0;
                     $prizeResource[$key]['resource_type'] = 9;
                     if (!empty($season)) {
                         $seasonInfo = SeriesSeason::query()->where('name', $season)->first(['id', 'name']);
@@ -180,12 +180,10 @@ class ExcelController
                 }
             } else {
                 $seasonInfo = SeriesSeason::query()->where('name', $season)->first(['id', 'name']);
-                $prizeResource[$key]['resource_id'] = $seasonInfo['id'];
+                $prizeResource[$key]['resource_id'] = $seasonInfo['id'] ?? 0;
                 $prizeResource[$key]['resource_type'] = 2;
             }
-            if (empty($prizeResource[$key]['resource_id'])) {
-                unset($prizeResource[$key]);
-            }
+
             $key++;
         }
 
