@@ -189,8 +189,12 @@ class ExcelController
 
         $extraResource = [];
         foreach ($prizeResource as $prizeKey => &$prizeItem) {
-            $prizeItem['relation_id'] = 0;
-            $prizeItem['star_relation'] = 0;
+            if (empty($prizeItem['relation_id'])) {
+                $prizeItem['relation_id'] = 0;
+            }
+            if (empty($prizeItem['star_relation'])) {
+                $prizeItem['star_relation'] = 0;
+            }
             if ($prizeItem['prize_name'] == '最佳情侣奖') {
                 foreach ($prizeItem['star'] as $key => $prize) {
                     $extraResource[$key][] = [
