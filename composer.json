@@ -15,6 +15,7 @@
         "laravel/tinker": "^1.0",
         "mashape/unirest-php": "3.0.*",
         "monolog/monolog": "^1.23",
+        "php-amqplib/php-amqplib": "^2.8",
         "php-http/guzzle6-adapter": "^1.1",
         "php-http/message": "^1.6",
         "phpFastCache/phpFastCache": "5.0.*",
@@ -28,6 +29,7 @@
     "require-dev": {
         "filp/whoops": "^2.0",
         "fzaninotto/faker": "^1.4",
+        "laravel/dusk": "^4.0",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^2.0",
         "phpunit/phpunit": "^7.0"
