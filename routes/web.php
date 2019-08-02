@@ -65,3 +65,29 @@ $router->get('/test/ins/download', 'InsController@downloadImg');
 $router->get('/excel/star', 'ExcelController@starRelation');
 //获取奖项关系excel数据
 $router->get('/excel/prize', 'ExcelController@PrizeRelation');
+
+/*
+|--------------------------------------------------------------------------
+| 导出相关
+|--------------------------------------------------------------------------
+*/
+$router->get('/export/exportTest1', 'ExportController@exportTest1');
+
+/*
+|--------------------------------------------------------------------------
+| 支付宝相关
+|--------------------------------------------------------------------------
+*/
+$router->get('/alipay/getCode', 'AliPayController@aliPayScan');
+$router->get('/alipay/pay', 'AliPayController@pay');
+$router->post('/alipay/aliPayNtify', 'AliPayController@aliPayNtify');
+
+/*
+|--------------------------------------------------------------------------
+| 消息相关
+|--------------------------------------------------------------------------
+*/
+$router->get('/messageNotify/test', 'MessageNotifyController@test');
+$router->get('/messageNotify/swooletest', 'MessageNotifyController@swooletest');
+$router->get('/messageNotify/swooleView', 'MessageNotifyController@swooleView');
+$router->get('/messageNotify/sendMessage', 'MessageNotifyController@swooleView');
