@@ -10,6 +10,9 @@ $router->get('/', function () {
 
 $router->get('/test', 'TestController@test');
 
+//发送邮件
+$router->get('/test/sendMail', 'TestController@sendMail');
+
 $router->get('/swagger/doc', 'SwaggerController@doc');
 
 //添加查询文件
@@ -91,3 +94,12 @@ $router->get('/messageNotify/test', 'MessageNotifyController@test');
 $router->get('/messageNotify/swooletest', 'MessageNotifyController@swooletest');
 $router->get('/messageNotify/swooleView', 'MessageNotifyController@swooleView');
 $router->get('/messageNotify/sendMessage', 'MessageNotifyController@swooleView');
+
+/*
+|--------------------------------------------------------------------------
+| 权限相关
+|--------------------------------------------------------------------------
+*/
+
+$router->get('/user/create', 'UserController@create');
+$router->get('/user/create', 'UserController@create');

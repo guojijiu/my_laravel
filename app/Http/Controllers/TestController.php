@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 
+use Illuminate\Support\Facades\Mail;
+
 class TestController
 {
     /**
@@ -48,6 +50,23 @@ class TestController
     public function test1()
     {
         return 'ok';
+    }
+
+    /**
+     * 测试发送邮件
+     */
+    public function sendMail()
+    {
+        $message = 'test：mail';
+        $to = 'l644522319@gmail.com';
+        $subject = '测试发送邮件';
+        Mail::send(
+            'emails.test',
+            ['content' => $message],
+            function ($message) use ($to, $subject) {
+                $message->to($to)->subject($subject);
+            }
+        );
     }
 
 }

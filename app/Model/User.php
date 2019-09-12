@@ -2,10 +2,10 @@
 
 namespace App\Model;
 
+use \Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Permission\Traits\HasRoles;
 
-use Jenssegers\Mongodb\Eloquent\Model;
-
-class User extends Model
+class User extends Authenticatable
 {
-    protected $connection = 'mongodb';
+    use HasRoles;
 }

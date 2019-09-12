@@ -11,6 +11,7 @@
         "php": "^7.1.3",
         "elasticsearch/elasticsearch": "^6.0",
         "fideloper/proxy": "^4.0",
+        "guzzlehttp/guzzle": "^6.3",
         "jenssegers/mongodb": "^3.5",
         "laravel/framework": "5.6.*",
         "laravel/tinker": "^1.0",
@@ -26,6 +27,7 @@
         "qiniu/php-sdk": "^7.2",
         "raiym/instagram-php-scraper": "^0.8.24",
         "simplesoftwareio/simple-qrcode": "^2.0",
+        "spatie/laravel-permission": "^2.37",
         "symfony/css-selector": "^4.1",
         "symfony/dom-crawler": "^4.1",
         "yansongda/pay": "^2.8"
