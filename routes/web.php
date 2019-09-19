@@ -103,3 +103,7 @@ $router->get('/messageNotify/sendMessage', 'MessageNotifyController@swooleView')
 
 $router->get('/user/create', 'UserController@create');
 $router->get('/user/create', 'UserController@create');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
