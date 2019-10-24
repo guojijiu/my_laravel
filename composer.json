@@ -16,7 +16,7 @@
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
         "mashape/unirest-php": "3.0.*",
-        "matyhtf/swoole_framework": "dev-master",
+        "matyhtf/swoole_framework": "^2.0",
         "monolog/monolog": "^1.23",
         "php-amqplib/php-amqplib": "^2.8",
         "php-http/guzzle6-adapter": "^1.1",
@@ -28,12 +28,14 @@
         "raiym/instagram-php-scraper": "^0.8.24",
         "simplesoftwareio/simple-qrcode": "^2.0",
         "spatie/laravel-permission": "^2.37",
+        "swooletw/laravel-swoole": "^2.6",
         "symfony/css-selector": "^4.1",
         "symfony/dom-crawler": "^4.1",
         "yansongda/pay": "^2.8"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.6",
+        "eaglewu/swoole-ide-helper": "dev-master",
         "filp/whoops": "^2.0",
         "fzaninotto/faker": "^1.4",
         "laravel/dusk": "^5.0",

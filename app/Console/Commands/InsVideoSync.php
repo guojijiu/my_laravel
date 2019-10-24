@@ -27,7 +27,7 @@ class InsVideoSync extends Command
     public function __construct()
     {
         parent::__construct();
-        $this->log = Log::channel('ins_video_sync');
+        $this->log = Log::channel();
     }
 
     public function handle()

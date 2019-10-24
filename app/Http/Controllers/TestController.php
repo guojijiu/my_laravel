@@ -40,8 +40,7 @@ class TestController
      */
     public function test()
     {
-        phpinfo();
-        return 'asd';
+        return '测试';
     }
 
     /**

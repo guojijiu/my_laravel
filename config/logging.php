@@ -61,7 +61,12 @@ return [
             'level' => 'info',
             'path' => storage_path('logs/business/ins_img/' . date('Ymd') . '-' . env('APP_NAME') . '.log'),
         ],
-
+        'swoole_log' => [
+            'driver' => 'daily',
+            'level' => 'info',
+            'path' => storage_path('logs/swoole/swoole_log.log'),
+            'days' => 30
+        ],
         'slack' => [
             'driver' => 'slack',
             'url' => env('LOG_SLACK_WEBHOOK_URL'),

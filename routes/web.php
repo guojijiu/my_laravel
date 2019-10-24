@@ -104,6 +104,14 @@ $router->get('/messageNotify/sendMessage', 'MessageNotifyController@swooleView')
 $router->get('/user/create', 'UserController@create');
 $router->get('/user/create', 'UserController@create');
 
+/*
+|--------------------------------------------------------------------------
+| swoole相关
+|--------------------------------------------------------------------------
+*/
+$router->get('/swoole/test', 'SwooleController@test');
+$router->get('/swoole/test', 'SwooleController@test');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
