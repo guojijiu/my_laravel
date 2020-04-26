@@ -2,22 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use SwooleTW\Http\Websocket\Websocket;
 
 class SocketController
 {
-    public function v1()
+
+    public function test1(Websocket $websocket, $data)
     {
-        $http = new swoole_http_server("127.0.0.1", 9501);
+        $websocket->emit('message', ['code' => 112, 'message' => "hello,swoole"]);
 
-        $http->on("start", function ($server) {
-            echo "Swoole http server is started at http://127.0.0.1:9501\n";
-        });
+        return false;
 
-        $http->on("request", function ($request, $response) {
-            $response->header("Content-Type", "text/plain");
-            $response->end("Hello World\n");
-        });
-
-        $http->start();
     }
 }

@@ -30,7 +30,7 @@ class SwooleTCPClient
         )) {
             die('连接失败');
         }
-        var_dump('连接成功');
+        var_dump('连接成功1111');
 
         return $this;
     }

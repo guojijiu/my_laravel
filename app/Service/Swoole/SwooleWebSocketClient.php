@@ -22,21 +22,21 @@ class SwooleWebSocketClient
 
     public function start()
     {
-        $client = new \Swoole\Client\WebSocket('127.0.0.1', 9503);
-        if (!$client->connect()) {
-            echo "connect to server failed.\n";
-            exit;
-        }
-        while (true) {
-            $client->send("发送消息----");
-            $message = $client->recv();
-            if ($message === false) {
-                break;
-            }
-            echo "Received from server: {$message}\n";
-            sleep(1);
-        }
-        echo "Closed by server.\n";
+//        $client = new \Swoole\Client\WebSocket('127.0.0.1', 9503);
+//        if (!$client->connect()) {
+//            echo "connect to server failed.\n";
+//            exit;
+//        }
+//        while (true) {
+//            $client->send("发送消息----");
+//            $message = $client->recv();
+//            if ($message === false) {
+//                break;
+//            }
+//            echo "Received from server: {$message}\n";
+//            sleep(1);
+//        }
+//        echo "Closed by server.\n";
 
         var_dump('swooleTCPClient 启动成功');
     }

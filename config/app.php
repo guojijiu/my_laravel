@@ -212,6 +212,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Mongo' => Jenssegers\Mongodb\MongodbServiceProvider::class,
+        'SocketC' => App\Facades\SocketC::class,
     ],
 
 ];
